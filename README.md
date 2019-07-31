@@ -15,4 +15,6 @@ How to win:
 Name rules:
     Spelling counts
     Casing does not matter
-    
+
+Resources needed:
+- chin images
