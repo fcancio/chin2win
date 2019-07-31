@@ -18,3 +18,6 @@ Name rules:
 
 Resources needed:
 - chin images
+
+Wireframe:
+https://wireframe.cc/RjBJC2
