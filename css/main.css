@@ -1,0 +1,59 @@
+html, * {
+    font-family: Helvetica;
+    box-sizing: border-box;
+  }
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 50vmin;
+    grid-template-rows: 10vmin 10vmin 50vmin 5vmin;
+}
+
+main * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+score {
+   display: flex;
+   flex-direction: row;
+}
+
+.counter {
+    border: 2px solid gray;
+    border-radius: 2vmin;
+    margin: 1vmin;
+    padding: 0 1vmin;
+}
+
+div.img {
+    padding: 5vmin;
+}
+
+img {
+    width: 50vmin;
+    border: 2px solid black;
+}
+
+#guess {
+    display: flex;
+    flex-direction: row;
+}
+
+input, main button {
+    border: 1px solid gray;
+    border-radius: 2vmin;
+}
+
+main button {
+    margin: 1vmin;
+}
