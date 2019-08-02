@@ -43,7 +43,7 @@ Stretch goals:
 
 Pseudocode:
 
-Game title, random image, text box, and submit button should render upon loading the page.
+Random image and player score should render upon loading the page.
 User should be able to type guess into input box and press submit.
 User's input should be compared to the image variable/assignment.
 If user input equals image variable: user is alerted that they have guessed correctly, point is added to score.

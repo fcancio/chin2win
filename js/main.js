@@ -1,25 +1,40 @@
 /*----- constants -----*/ 
-const chinLookup = {
-    th: {
-        chinImg: 'imgs/TomHanks.jpg',
-        fullImg: 'imgs/TomHanks.jpg'
-    }
+const chins = {
+    tomHanks: 'imgs/TomHanks_chin.png',
+    michaelKeaton:'imgs/MichaelKeaton_chin.png'
 }
+
+// const chinLookup = {
+//     tomHanks: {
+//         chinImg: 'imgs/TomHanks_chin.png',
+//         fullImg: 'imgs/TomHanks.jpg'
+//     },
+//     michaelKeaton: {
+//         chinImg: 'imgs/MichaelKeaton_chin.png',
+//         fullImg: 'imgs/MichaelKeaton.jpg'
+//     }
+// }
+
 /*----- app's state (variables) -----*/ 
 let score, image
 
 /*----- cached element references -----*/ 
-const scoreEl = document.getElementById()
 
 /*----- event listeners -----*/ 
-document.querySelector('main button')
-    .addEventListener('click', checkAnswer)
 
 /*----- functions -----*/
 init();
 
 function init() {
+    image = Object.keys(chins);
     score = 0;
-    image = 'imgs/TomHanks.jpg'
+    console.log(image)
 }
 render();
+
+function render() {
+    //render score
+
+    //render result
+}
+
