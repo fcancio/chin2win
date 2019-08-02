@@ -20,7 +20,11 @@ Wireframes:
     https://wireframe.cc/RjBJC2
 
 User stories:
-    As a user, I should be able to see an image of a chin, type out my guess in the input box, submit my guess, and see whether or not my answer is correct.
+    As a user, I want to be able to see a clear/high quality image of a chin so for guessing correctly.
+    As a user, I need an input box to type out my guess
+    As a user, need a way to submit my guess.
+    As a user, I need an alert or message to know whether or not my answer is correct.
+    As a user, I would like a way to see my score, or how many chins I've guessed correctly.
 
 Features list:
     chin image
@@ -38,3 +42,10 @@ Stretch goals:
         - player #
 
 Pseudocode:
+
+Game title, random image, text box, and submit button should render upon loading the page.
+User should be able to type guess into input box and press submit.
+User's input should be compared to the image variable/assignment.
+If user input equals image variable: user is alerted that they have guessed correctly, point is added to score.
+If user input does not equal image variable, user is alerted that they should guess again.
+
