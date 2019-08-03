@@ -39,7 +39,7 @@ div.img {
     padding: 5vmin;
 }
 
-.photo img {
+.photo {
     width: 50vmin;
     border: 2px solid black;
 }
