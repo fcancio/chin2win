@@ -45,7 +45,7 @@ Stretch goals:
 Pseudocode:
 
 1. Chin image and player score should initialize upon loading the page.
-    - create a chins array that holds chin objects that have properties chinImg, fullImg, answer.
+    [x] create a chins array that holds chin objects that have properties chinImg, fullImg, answer.
     - upon render, an image pulled from the chins array will display on the page
     - create a player score that increments when player gets a correct answer
 2. User should be able to type guess into input box and press submit.

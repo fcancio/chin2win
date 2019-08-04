@@ -24,8 +24,8 @@ let rndImgIdx = Math.floor(Math.random() * chins.length);
 
 /*----- cached element references -----*/ 
 let photoContainer = document.getElementById('photo')
-let scoreEl = document.getElementsByClassName('counter')
-let userInput = document.querySelector('input')
+let scoreEl = document.querySelector('.counter')
+let userInput = document.querySelector('.userText')
 let submitAnswer = document.querySelector('button').addEventListener('click', checkGuess)
 
 /*----- event listeners -----*/ 
@@ -44,28 +44,45 @@ function init() {
 }
 render();
 
+
 function render() {
+    //render image
+    // image = document.createElement("img")
+        // let rndImgIdx = Math.floor(Math.random() * chins.length);
+    image.setAttribute("src", `${chins[rndImgIdx].chinImg}`)
+        photoContainer.getAttribute(image)
+
+    // render score
+    scoreEl.innerHTML = score
+
+    //empty text input
+    document.querySelector('.userText').value=''
+}
+
+
+function checkGuess() {
+    // when button is clicked, compare player's input with chins[i].answer
+    let chinAnswer = chins[rndImgIdx].answer
+    userInput = document.querySelector('input').value.toLowerCase()
+    console.log(userInput)
+    if(userInput === chinAnswer) {
+        window.alert('Right!')
+        score ++;
+        // scoreEl.innerHTML = score
+        console.log(score)
+    } else {
+        window.alert('Guess again!')
+
+    //call render
+  
+    }
+    
+
+    render();
+    //     if (playerGuess === 
+    }
     
 
 
-    //render image
-
-    // render score
-
-    //render result
-}
-
-function checkGuess() {
-// when button is clicked, compare player's input with chins[i].answer
-let chinAnswer = chins[rndImgIdx].answer
-userInput = document.querySelector('input').value.toLowerCase()
-console.log(userInput)
-if(userInput === chinAnswer) {
-    alert('Right!')
-} else {
-    alert('Guess again!')
-}
 
 
-//     if (playerGuess === 
-}
