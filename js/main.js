@@ -15,6 +15,16 @@ const chins = [
         fullImg: 'imgs/MichaelKeaton.jpg',
         answer: 'michael keaton'
     },
+    {
+        chinImg: 'imgs/TinaFey_chin.png',
+        fullImg: 'imgs/TinaFey.jpg',
+        answer: 'tina fey'
+    },
+    {
+        chinImg: 'imgs/AmyPoehler_chin.png',
+        fullImg: 'imgs/AmyPoehler.jpg',
+        answer: 'amy poehler'
+    },
 ]
 
 /*----- app's state (variables) -----*/ 
@@ -63,6 +73,8 @@ function render() {
 
     //empty text input
     document.querySelector('.userText').value=''
+
+    //if there are no more chins, alert user of final score
 }
 
 
@@ -75,18 +87,14 @@ function checkGuess() {
         window.alert('Right!')
         score ++;
         updateChins()
-        // scoreEl.innerHTML = score
         console.log(score)
     } else {
         window.alert('Guess again!')
-
-    //call render
-  
     }
     
-
+    //call render
     render();
-    //     if (playerGuess === 
+
     }
     
 
