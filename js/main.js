@@ -47,26 +47,28 @@ init();
 
 function init() {
     score = 0;
-    getImage();
+    getChinImage();
 }
 render();
 
 
-function getImage () {
+function getChinImage() {
     image = document.createElement("img")
     // let rndImgIdx = Math.floor(Math.random() * chins.length);
     image.setAttribute("src", `${chins[rndImgIdx].chinImg}`)
     photoContainer.appendChild(image)
 }
 
+function getFullImage() {
+    image.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
+    photoContainer.appendChild(image)
+}
+
 function render() {
     photoContainer.removeChild(image)
-    getImage();
+    
     //render image
-    // image = document.createElement("img")
-        // let rndImgIdx = Math.floor(Math.random() * chins.length);
-    // image.setAttribute("src", `${chins[rndImgIdx].chinImg}`)
-    // photoContainer.getAttribute(image)
+    getChinImage();
 
     // render score
     scoreEl.innerHTML = score
@@ -86,12 +88,16 @@ function checkGuess() {
     if(userInput === chinAnswer) {
         window.alert('Right!')
         score ++;
-        updateChins()
+        getFullImage()
+        // image.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
+        //     photoContainer.appendChild(image)
+        console.log(image)
         console.log(score)
     } else {
         window.alert('Guess again!')
     }
-    
+
+    updateChins()
     //call render
     render();
 
