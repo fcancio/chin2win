@@ -29,7 +29,7 @@ const chins = [
 
 /*----- app's state (variables) -----*/ 
 let score, image
-let rndImgIdx = Math.floor(Math.random() * chins.length);
+let rndImgIdx = 0
 
 
 /*----- cached element references -----*/ 
@@ -53,6 +53,7 @@ render();
 
 
 function getChinImage() {
+    rndImgIdx = Math.floor(Math.random() * chins.length);
     image = document.createElement("img")
     // let rndImgIdx = Math.floor(Math.random() * chins.length);
     image.setAttribute("src", `${chins[rndImgIdx].chinImg}`)
