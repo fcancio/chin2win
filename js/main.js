@@ -19,8 +19,8 @@ const chins = [
 
 /*----- app's state (variables) -----*/ 
 let score, image
-
 let rndImgIdx = Math.floor(Math.random() * chins.length);
+
 
 /*----- cached element references -----*/ 
 let photoContainer = document.getElementById('photo')
@@ -37,20 +37,26 @@ init();
 
 function init() {
     score = 0;
-    image = document.createElement("img")
-        // let rndImgIdx = Math.floor(Math.random() * chins.length);
-        image.setAttribute("src", `${chins[rndImgIdx].chinImg}`)
-        photoContainer.appendChild(image)
+    getImage();
 }
 render();
 
 
+function getImage () {
+    image = document.createElement("img")
+    // let rndImgIdx = Math.floor(Math.random() * chins.length);
+    image.setAttribute("src", `${chins[rndImgIdx].chinImg}`)
+    photoContainer.appendChild(image)
+}
+
 function render() {
+    photoContainer.removeChild(image)
+    getImage();
     //render image
     // image = document.createElement("img")
         // let rndImgIdx = Math.floor(Math.random() * chins.length);
-    image.setAttribute("src", `${chins[rndImgIdx].chinImg}`)
-        photoContainer.getAttribute(image)
+    // image.setAttribute("src", `${chins[rndImgIdx].chinImg}`)
+    // photoContainer.getAttribute(image)
 
     // render score
     scoreEl.innerHTML = score
@@ -68,6 +74,7 @@ function checkGuess() {
     if(userInput === chinAnswer) {
         window.alert('Right!')
         score ++;
+        updateChins()
         // scoreEl.innerHTML = score
         console.log(score)
     } else {
@@ -83,6 +90,7 @@ function checkGuess() {
     }
     
 
-
-
+function updateChins() {
+    chins.splice(rndImgIdx, 1)
+}
 
