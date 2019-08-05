@@ -1,5 +1,5 @@
 html, * {
-    font-family: Helvetica;
+    font-family: 'Helvetica';
     box-sizing: border-box;
   }
 
@@ -9,12 +9,13 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+
 }
 
 main {
     display: grid;
     grid-template-columns: 50vmin;
-    grid-template-rows: 10vmin 10vmin 50vmin 5vmin;
+    grid-template-rows: 10vmin 10vmin auto 10vmin;
 }
 
 main * {
@@ -23,24 +24,30 @@ main * {
     align-items: center;
   }
 
-score {
+h1 {
+    font-family: 'Bungee Shade';
+}
+
+.score {
    display: flex;
    flex-direction: row;
 }
 
 .counter {
-    border: 2px solid gray;
-    border-radius: 2vmin;
+    border: 2px solid black;
+    border-radius: 1vmin;
     margin: 1vmin;
     padding: 0 1vmin;
 }
 
 div.img {
     padding: 5vmin;
+    width: 75vmin;
+    max-height: 75vmin;
 }
 
 .photo {
-    width: 50vmin;
+    width: 75vmin;
     border: 2px solid black;
 }
 
@@ -50,10 +57,13 @@ div.img {
 }
 
 input, main button {
-    border: 1px solid gray;
+    border: 2px solid black;
     border-radius: 2vmin;
+    padding: 10px;
 }
 
 main button {
     margin: 1vmin;
+    background-color: black;
+    color: white;
 }
