@@ -115,16 +115,6 @@ function init() {
 render();
 
 
-function render() {
-    scoreEl.innerHTML = score;
-    photoContainer.removeChild(image);
-    getChinImage();
-    
-    
-    //if there are no more chins, alert user of final score
-}
-
-
 function getChinImage() {
     rndImgIdx = Math.floor(Math.random() * chins.length);
     image = document.createElement("img")
@@ -136,9 +126,10 @@ function getChinImage() {
 function getFullImage() {
     let image2 = document.createElement("img")
         image2.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
-        photoContainer.replaceChild(image2, image)
-    nextButton.style.backgroundcolor='black'
-    submitButton.style.backgroundcolor='lightgray'
+        photoContainer.removeChild(image)
+        photoContainer.append(image2)
+    // nextButton.style.backgroundcolor='red'
+    // submitButton.style.backgroundcolor='lightgray'
         console.log(image2)
 }
 
@@ -160,7 +151,6 @@ function submitGuess() {
     }
 
     updateChins()
-    render()
 }
     
 function nextImage() {
@@ -169,5 +159,15 @@ function nextImage() {
 
 function updateChins() {
     chins.splice(rndImgIdx, 1)
+}
+
+
+function render() {
+    scoreEl.innerHTML = score;
+    // photoContainer.removeChild(image);
+    // getChinImage();
+    
+    
+    //if there are no more chins, alert user of final score
 }
 
