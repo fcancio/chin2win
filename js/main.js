@@ -89,7 +89,7 @@ const chins = [
 ]
 
 /*----- app's state (variables) -----*/ 
-let score, image, rndImgIdx, image2
+let score, rndImgIdx
 
 
 /*----- cached element references -----*/ 
@@ -99,6 +99,8 @@ let inputEl = document.querySelector('.userText')
 let displayResult = document.querySelector('.result')
 let nextButton = document.querySelector('.next')
 let submitButton = document.querySelector('.submit')
+let chinImage = document.createElement("img")
+let faceImage = document.createElement("img")
 
 
 /*----- event listeners -----*/ 
@@ -117,20 +119,20 @@ render();
 
 function getChinImage() {
     rndImgIdx = Math.floor(Math.random() * chins.length);
-    image = document.createElement("img")
+    
     // let rndImgIdx = Math.floor(Math.random() * chins.length);
-    image.setAttribute("src", `${chins[rndImgIdx].chinImg}`)
-    photoContainer.appendChild(image).style.border='2px solid black'
+    chinImage.setAttribute("src", `${chins[rndImgIdx].chinImg}`)
+    photoContainer.appendChild(chinImage).style.border='2px solid black'
 }
 
 function getFullImage() {
-    let image2 = document.createElement("img")
-        image2.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
-        photoContainer.removeChild(image)
-        photoContainer.append(image2)
-    // nextButton.style.backgroundcolor='red'
+        faceImage.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
+        photoContainer.removeChild(chinImage)
+        photoContainer.append(faceImage)
+        scoreEl.innerHTML = score;
+    
     // submitButton.style.backgroundcolor='lightgray'
-        console.log(image2)
+       
 }
 
 
@@ -144,6 +146,7 @@ function submitGuess() {
         displayResult.innerHTML = 'You got it!'
         displayResult.style.color = 'purple'
         document.querySelector('.userText').value=''
+        nextButton.style.color = 'green';
         getFullImage()
     } else {
         displayResult.innerHTML = 'NOPE. Guess Again and check your spelling!'
@@ -153,8 +156,10 @@ function submitGuess() {
     updateChins()
 }
     
+
 function nextImage() {
-    render()
+    chins.length === 0 ? displayResult.innerHTML = `Congrats! You knew ${score} chins!` : render()
+    console.log('go to next image')
 }
 
 function updateChins() {
@@ -163,10 +168,11 @@ function updateChins() {
 
 
 function render() {
-    scoreEl.innerHTML = score;
-    // photoContainer.removeChild(image);
-    // getChinImage();
+    nextButton.style.color = 'white';
+    photoContainer.removeChild(faceImage)
+    getChinImage();
     
+
     
     //if there are no more chins, alert user of final score
 }
