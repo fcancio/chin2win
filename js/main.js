@@ -113,8 +113,8 @@ init();
 function init() {
     score = 0;
     getChinImage();
+    render();
 }
-render();
 
 
 function getChinImage() {
@@ -128,11 +128,10 @@ function getChinImage() {
 function getFullImage() {
         faceImage.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
         photoContainer.removeChild(chinImage)
-        photoContainer.append(faceImage)
+        photoContainer.appendChild(faceImage)
         scoreEl.innerHTML = score;
     
-    // submitButton.style.backgroundcolor='lightgray'
-       
+
 }
 
 
@@ -144,22 +143,24 @@ function submitGuess() {
     if(inputEl === chinAnswer) {
         score ++
         displayResult.innerHTML = 'You got it!'
-        displayResult.style.color = 'purple'
+            displayResult.style.color = 'purple'
         document.querySelector('.userText').value=''
         nextButton.style.color = 'green';
         getFullImage()
+        updateChins()
     } else {
         displayResult.innerHTML = 'NOPE. Guess Again and check your spelling!'
         displayResult.style.color='red'
     }
-
-    updateChins()
 }
     
 
 function nextImage() {
+    // photoContainer.remove(faceImage)
     chins.length === 0 ? displayResult.innerHTML = `Congrats! You knew ${score} chins!` : render()
     console.log('go to next image')
+
+    getChinImage()
 }
 
 function updateChins() {
@@ -169,8 +170,10 @@ function updateChins() {
 
 function render() {
     nextButton.style.color = 'white';
+    console.log(photoContainer)
     photoContainer.removeChild(faceImage)
     getChinImage();
+
     
 
     

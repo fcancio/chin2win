@@ -33,7 +33,7 @@ Features list:
     score
 
 Stretch goals:
-    - Full face image shown when chin guessed correcly
+    [x] Full face image shown when chin guessed correcly
     - Incorrect guess passes
     - Clues
     - Trade incorrect guess pass for clues
@@ -44,17 +44,17 @@ Stretch goals:
 
 Pseudocode:
 
-1. Chin image and player score should initialize upon loading the page.
+1. [x] Chin image and player score should initialize upon loading the page.
     [x] create a chins array that holds chin objects that have properties chinImg, fullImg, answer.
-    - upon render, an image pulled from the chins array will display on the page
-    - create a player score that increments when player gets a correct answer
-2. User should be able to type guess into input box and press submit.
-3. User's input should be compared to the image variable/assignment.
-4. If user input equals image variable: 
-    - user is alerted that they have guessed correctly
-    - run init()
-        - adds point to score
-        - displays new random image 
-5. If user input does not equal image variable
-    - user is alerted that they should guess again.
+    [x] upon render, an image pulled from the chins array will display on the page
+    [x] create a player score that increments when player gets a correct answer
+2. [x] User should be able to type guess into input box and press submit.
+3. [x] User's input should be compared to the image variable/assignment.
+4. [x] If user input equals image variable: 
+    [x] user is alerted that they have guessed correctly
+    [x] run render()
+        [x] adds point to score
+        [x] displays new chin image 
+5. [x] If user input does not equal image variable
+    [x] user is alerted that they should guess again.
 
