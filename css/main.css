@@ -14,41 +14,40 @@ body {
 
 main {
     display: grid;
-    grid-template-columns: 50vmin;
-    grid-template-rows: 10vmin 10vmin auto 10vmin;
+    grid-template-columns: 60vmin;
+    grid-template-rows: 10vmin 15vmin 60vmin 10vmin;
 }
 
 main * {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
-h1 {
-    font-family: 'Bungee Shade';
-}
+ /* h1 {
+    font-family: 'Bungee Shade'; 
+}  */
 
 .score {
-   display: flex;
-   flex-direction: row;
+   margin: 0
 }
 
 .counter {
     border: 2px solid black;
     border-radius: 1vmin;
-    margin: 1vmin;
+    margin-left: 1vmin;
     padding: 0 1vmin;
 }
 
-div.img {
-    padding: 5vmin;
-    width: 75vmin;
-    max-height: 75vmin;
-}
+/* .result {
+    
+} */
 
-.photo {
-    width: 75vmin;
-    border: 2px solid black;
+#photo {
+    width: 60vmin;
+    border: 5px solid gray;
+    background-color: black
 }
 
 #guess {

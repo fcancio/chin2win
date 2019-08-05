@@ -1,14 +1,10 @@
 /*----- constants -----*/ 
-// const chins = ['imgs/TomHanks_chin.png', 
-//     'imgs/MichaelKeaton_chin.png'
-// ]
-
 
 const chins = [
     {
         chinImg: 'imgs/TomHanks_chin.png',
         fullImg: 'imgs/TomHanks.jpg',
-        answer: 'tom hanks'
+        answer: 'tom hanks',
     },
     {
         chinImg: 'imgs/MichaelKeaton_chin.png',
@@ -23,32 +19,32 @@ const chins = [
     {
         chinImg: 'imgs/ArnoldSchwarzenegger_chin.png',
         fullImg: 'imgs/ArnoldSchwarzenegger.jpg',
-        answer: 'arnold schwarzenegger'
+        answer: 'arnold schwarzenegger',
     },
     {
         chinImg: 'imgs/BarackObama_chin.png',
         fullImg: 'imgs/BarackObama.jpg',
-        answer: 'barack obama'
+        answer: 'barack obama', 
     },
     {
         chinImg: 'imgs/Beyonce_chin.png',
         fullImg: 'imgs/Beyonce.jpg',
-        answer: 'beyonce'
+        answer: 'beyonce',
     },
     {
         chinImg: 'imgs/ChristianBale_chin.png',
         fullImg: 'imgs/ChristianBale.jpg',
-        answer: 'christian bale'
+        answer: 'christian bale',
     },
     {
         chinImg: 'imgs/DonaldTrump_chin.png',
         fullImg: 'imgs/DonaldTrump.jpg',
-        answer: 'donald trump'
+        answer: 'donald trump',
     },
     {
         chinImg: 'imgs/Jay-Z_chin.png',
         fullImg: 'imgs/Jay-Z.jpg',
-        answer: 'jay z'
+        answer: 'jay z',
     },
     {
         chinImg: 'imgs/JenniferLawrence_chin.png',
@@ -78,7 +74,7 @@ const chins = [
     {
         chinImg: 'imgs/TheRock_chin.png',
         fullImg: 'imgs/TheRock.jpg',
-        answer: 'the rock'
+        answer: 'the rock',
     },
     {
         chinImg: 'imgs/TomHolland_chin.png',
@@ -93,21 +89,20 @@ const chins = [
 ]
 
 /*----- app's state (variables) -----*/ 
-let score, image
-let rndImgIdx = 0
+let score, image, rndImgIdx
 
 
 /*----- cached element references -----*/ 
 let photoContainer = document.getElementById('photo')
 let scoreEl = document.querySelector('.counter')
 let userInput = document.querySelector('.userText')
+let displayResult = document.querySelector('.result')
 
 
 /*----- event listeners -----*/ 
 document.querySelector('button').addEventListener('click', checkGuess)
 
 /*----- functions -----*/
-
 init();
 
 function init() {
@@ -115,6 +110,15 @@ function init() {
     getChinImage();
 }
 render();
+
+
+function render() {
+    photoContainer.removeChild(image)
+    getChinImage();
+    scoreEl.innerHTML = score
+    
+    //if there are no more chins, alert user of final score
+}
 
 
 function getChinImage() {
@@ -130,15 +134,6 @@ function getFullImage() {
     photoContainer.appendChild(image)
 }
 
-function render() {
-    photoContainer.removeChild(image)
-    getChinImage();
-    scoreEl.innerHTML = score
-    
-
-    //if there are no more chins, alert user of final score
-}
-
 
 function checkGuess() {
     // when button is clicked, compare player's input with chins[i].answer
@@ -146,7 +141,7 @@ function checkGuess() {
     userInput = document.querySelector('input').value.toLowerCase()
     console.log(userInput)
     if(userInput === chinAnswer) {
-        window.alert('Right!')
+        displayResult.innerHTML = 'You got it!'
         score ++;
         // image.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
         //     photoContainer.appendChild(image)
@@ -157,7 +152,8 @@ function checkGuess() {
         console.log(image)
         console.log(score)
     } else {
-        window.alert('Guess again!')
+        displayResult.innerHTML = 'NOPE. Guess Again and check your spelling!'
+        displayResult.style.color='red'
     }
 
     
