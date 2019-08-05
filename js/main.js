@@ -95,12 +95,13 @@ let score, image, rndImgIdx
 /*----- cached element references -----*/ 
 let photoContainer = document.getElementById('photo')
 let scoreEl = document.querySelector('.counter')
-let userInput = document.querySelector('.userText')
+let inputEl = document.querySelector('.userText')
 let displayResult = document.querySelector('.result')
 
 
 /*----- event listeners -----*/ 
 document.querySelector('button').addEventListener('click', checkGuess)
+document.getElementById('next').addEventListener('click', nextImage)
 
 /*----- functions -----*/
 init();
@@ -130,37 +131,39 @@ function getChinImage() {
 }
 
 function getFullImage() {
-    image.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
-    photoContainer.appendChild(image)
+   photoContainer.removeChild(image)
+    let image2 = document.createElement("img")
+        image2.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
+        photoContainer.appendChild(image2)
+        photoContainer.clientWidth=60;
 }
 
 
 function checkGuess() {
     // when button is clicked, compare player's input with chins[i].answer
     let chinAnswer = chins[rndImgIdx].answer
-    userInput = document.querySelector('input').value.toLowerCase()
-    console.log(userInput)
-    if(userInput === chinAnswer) {
+    inputEl = document.querySelector('input').value.toLowerCase()
+    console.log(inputEl)
+    if(inputEl === chinAnswer) {
         displayResult.innerHTML = 'You got it!'
-        score ++;
-        // image.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
-        //     photoContainer.appendChild(image)
+        displayResult.style.color = 'purple'
         document.querySelector('.userText').value=''
+        score ++;
         getFullImage()
         updateChins()
-        render()
         console.log(image)
         console.log(score)
     } else {
         displayResult.innerHTML = 'NOPE. Guess Again and check your spelling!'
         displayResult.style.color='red'
     }
-
+}
     
+function nextImage() {
+    let next = document.querySelector('#next')
+    render()
+}
 
-
-    }
-    
 
 function updateChins() {
     chins.splice(rndImgIdx, 1)

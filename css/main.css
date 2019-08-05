@@ -23,26 +23,22 @@ main * {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
+}
 
- /* h1 {
+h1 {
     font-family: 'Bungee Shade'; 
-}  */
+} 
 
 .score {
-   margin: 0
+   margin: 0;
 }
 
 .counter {
     border: 2px solid black;
     border-radius: 1vmin;
     margin-left: 1vmin;
-    padding: 0 1vmin;
+    padding: 1vmin 2vmin;
 }
-
-/* .result {
-    
-} */
 
 #photo {
     width: 60vmin;
@@ -62,7 +58,14 @@ input, main button {
 }
 
 main button {
-    margin: 1vmin;
+    margin-left: 1vmin;
     background-color: black;
     color: white;
+}
+
+#next {
+    border: 2px solid lightgray;
+    border-radius: 50%;
+    background-color: lightgray;
+    font: white;
 }
