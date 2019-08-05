@@ -89,7 +89,7 @@ const chins = [
 ]
 
 /*----- app's state (variables) -----*/ 
-let score, image, rndImgIdx
+let score, image, rndImgIdx, image2
 
 
 /*----- cached element references -----*/ 
@@ -97,11 +97,13 @@ let photoContainer = document.getElementById('photo')
 let scoreEl = document.querySelector('.counter')
 let inputEl = document.querySelector('.userText')
 let displayResult = document.querySelector('.result')
+let nextButton = document.querySelector('.next')
+let submitButton = document.querySelector('.submit')
 
 
 /*----- event listeners -----*/ 
-document.querySelector('button').addEventListener('click', checkGuess)
-document.getElementById('next').addEventListener('click', nextImage)
+submitButton.addEventListener('click', submitGuess)
+nextButton.addEventListener('click', nextImage)
 
 /*----- functions -----*/
 init();
@@ -114,9 +116,10 @@ render();
 
 
 function render() {
-    photoContainer.removeChild(image)
+    scoreEl.innerHTML = score;
+    photoContainer.removeChild(image);
     getChinImage();
-    scoreEl.innerHTML = score
+    
     
     //if there are no more chins, alert user of final score
 }
@@ -131,39 +134,38 @@ function getChinImage() {
 }
 
 function getFullImage() {
-   photoContainer.removeChild(image)
     let image2 = document.createElement("img")
         image2.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
-        photoContainer.appendChild(image2)
-        photoContainer.clientWidth=60;
+        photoContainer.replaceChild(image2, image)
+    nextButton.style.backgroundcolor='black'
+    submitButton.style.backgroundcolor='lightgray'
+        console.log(image2)
 }
 
 
-function checkGuess() {
+function submitGuess() {
     // when button is clicked, compare player's input with chins[i].answer
     let chinAnswer = chins[rndImgIdx].answer
     inputEl = document.querySelector('input').value.toLowerCase()
-    console.log(inputEl)
+    
     if(inputEl === chinAnswer) {
+        score ++
         displayResult.innerHTML = 'You got it!'
         displayResult.style.color = 'purple'
         document.querySelector('.userText').value=''
-        score ++;
         getFullImage()
-        updateChins()
-        console.log(image)
-        console.log(score)
     } else {
         displayResult.innerHTML = 'NOPE. Guess Again and check your spelling!'
         displayResult.style.color='red'
     }
+
+    updateChins()
+    render()
 }
     
 function nextImage() {
-    let next = document.querySelector('#next')
     render()
 }
-
 
 function updateChins() {
     chins.splice(rndImgIdx, 1)
