@@ -126,7 +126,9 @@ const wrongMsgArr =
     "Try again.", 
     "Don't give up now!", 
     "So close...maybe.", 
-    "Wow. Wrong."]
+    "Wow. Wrong.",
+    "Buzz's girlfriend, Woof."
+]
 const defaultMsgArr = 
     ['But do you know to whom this chin belongs?', 
     'Who dis?', 
@@ -135,8 +137,8 @@ const defaultMsgArr =
     'Whose chin even IS this?']
 const gameOverMsgArr = [
     "Congrats! You know your chins!",
-    "HOW many chins!? I approve!`",
-    "Well, it's been fun! 'Til next chin..."
+    "HOW many chins!?  I approve. Thanks for playing!",
+    "Well, it's been fun!  'Til next chin..."
 ]
 
 /*----- app's state (variables) -----*/ 
@@ -153,10 +155,13 @@ let submitButton = document.querySelector('.submit')
 let chinImage = document.createElement("img")
 let faceImage = document.createElement("img")
 let herm = document.createElement("img")
+let resetButton = document.querySelector(".reset")
 
 /*----- event listeners -----*/ 
 submitButton.addEventListener('click', submitGuess)
 nextButton.addEventListener('click', nextImage)
+resetButton.addEventListener('click', init)
+
 
 /*----- functions -----*/
 init();
@@ -210,8 +215,9 @@ function submitGuess() {
     
 
 function nextImage() {
+    //if there are no more chins, alert user of final score 
     if(chins.length === 0) {
-        displayResult.innerHTML = `Congrats! You knew ${score} chins!`
+        displayResult.innerHTML = `Congrats! You've guessed ALL THE CHINS WE HAVE.  Tell all your friends that you know at least ${score} chins!`
     }
     else if(score === 3 || score === 6 || score === 9) {
         keepGoing();
@@ -220,7 +226,6 @@ function nextImage() {
     }
 }
 
-
 function updateChins() {
     chins.splice(rndImgIdx, 1)
 }
@@ -228,15 +233,15 @@ function updateChins() {
 
 function render() {
     defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
-
+    scoreEl.innerHTML = score;
     displayResult.innerHTML = defaultMsgArr[defaultMsgIdx];
         displayResult.style.color="black"
         displayResult.style.fontStyle="italic"
     nextButton.style.color = 'white';
+    resetButton.style.color = 'white';
     photoContainer.removeChild(faceImage)
     getChinImage();
     
-    //if there are no more chins, alert user of final score
 }
 
 function keepGoing() {
@@ -254,9 +259,11 @@ function keepGoing() {
 
 function gameOver() {
     gameOverMsgIdx = Math.floor(Math.random() * gameOverMsgArr.length);
-    displayResult.innerHTML = gameOverMsgArr[gameOverMsgIdx];
+        displayResult.innerHTML = gameOverMsgArr[gameOverMsgIdx];
 
     herm.src = 'imgs/herm_logo_new.jpg';
-    photoContainer.append(herm)
-    console.log(herm)
+        photoContainer.append(herm)
+    
+    photoContainer.style.backgroundColor="white";
 }
+

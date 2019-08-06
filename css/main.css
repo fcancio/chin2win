@@ -9,13 +9,12 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-
 }
 
 main {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 10vmin 15vmin 60vmin 10vmin;
+    grid-template-rows: 10vmin 15vmin 60vmin 7vmin;
 }
 
 main * {
@@ -56,16 +55,23 @@ h1 {
     flex-direction: row;
 }
 
-input, main button {
+input, .submit {
     border: 2px solid black;
     border-radius: 2vmin;
     padding: 10px;
 }
 
-main button {
+.submit {
     margin-left: 1vmin;
     background-color: black;
     color: white;
+}
+
+section {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 5px 0;
 }
 
 .next {
@@ -73,6 +79,15 @@ main button {
     border-radius: 2vmin;
     background-color: lightgray;
     font: white;
+    margin: 0;
+}
+
+.reset {
+    border: 2px solid lightgray;
+    border-radius: 2vmin;
+    background-color: lightgray;
+    font: white;
+    margin: 0;
 }
 
 /* .next:hover {
