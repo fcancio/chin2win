@@ -64,7 +64,7 @@ const chins = [
     {
         chinImg: 'imgs/Rihanna_chin.png',
         fullImg: 'imgs/Rihanna.jpg',
-        answer: 'rihanna'
+        answer: 'rihanna',
     },
     {
         chinImg: 'imgs/RobertDowneyJr_chin.png',
@@ -75,7 +75,7 @@ const chins = [
     {
         chinImg: 'imgs/ScarletJohansson_chin.png',
         fullImg: 'imgs/ScarletJohansson.jpg',
-        answer: 'scarlet johansson'
+        answer: 'scarlet johansson',
     },
     {
         chinImg: 'imgs/TheRock_chin.png',
@@ -87,12 +87,27 @@ const chins = [
         chinImg: 'imgs/TomHolland_chin.png',
         fullImg: 'imgs/TomHolland.jpg',
         answer: 'tom holland',
-        answerTwo: 'spiderman'
+        answerTwo: 'spiderman',
     },
     {
         chinImg: 'imgs/WillSmith_chin.png',
         fullImg: 'imgs/WillSmith.jpg',
-        answer: 'will smith'
+        answer: 'will smith',
+    },
+    {
+        chinImg: 'imgs/bigbird_chin.jpg',
+        fullImg: 'imgs/bigbird.jpg',
+        answer: 'big bird',
+    },
+    {
+        chinImg: 'imgs/pikachu_chin.jpg',
+        fullImg: 'imgs/pikachu.png',
+        answer: 'pikachu',
+    },
+    {
+        chinImg: 'imgs/homersimpson_chin.jng',
+        fullImg: 'imgs/homersimpson.jpg',
+        answer: 'homer simposon',
     },
 ]
 
