@@ -5,6 +5,7 @@ const chins = [
         chinImg: 'imgs/TomHanks_chin.png',
         fullImg: 'imgs/TomHanks.jpg',
         answer: 'tom hanks',
+        clue1: ''
     },
     {
         chinImg: 'imgs/MichaelKeaton_chin.png',
@@ -25,11 +26,13 @@ const chins = [
         chinImg: 'imgs/BarackObama_chin.png',
         fullImg: 'imgs/BarackObama.jpg',
         answer: 'barack obama', 
+        answer2: 'obama',
     },
     {
         chinImg: 'imgs/Beyonce_chin.png',
         fullImg: 'imgs/Beyonce.jpg',
         answer: 'beyonce',
+        answer2: 'beyoncé',
     },
     {
         chinImg: 'imgs/ChristianBale_chin.png',
@@ -40,11 +43,13 @@ const chins = [
         chinImg: 'imgs/DonaldTrump_chin.png',
         fullImg: 'imgs/DonaldTrump.jpg',
         answer: 'donald trump',
+        answer2: 'trump',
     },
     {
         chinImg: 'imgs/Jay-Z_chin.png',
         fullImg: 'imgs/Jay-Z.jpg',
         answer: 'jay z',
+        answer2: 'jay-z',
     },
     {
         chinImg: 'imgs/JenniferLawrence_chin.png',
@@ -64,7 +69,8 @@ const chins = [
     {
         chinImg: 'imgs/RobertDowneyJr_chin.png',
         fullImg: 'imgs/RobertDowneyJr.jpg',
-        answer: 'robert downey jr'
+        answer: 'robert downey jr',
+        answer2: 'tony stark',
     },
     {
         chinImg: 'imgs/ScarletJohansson_chin.png',
@@ -75,11 +81,13 @@ const chins = [
         chinImg: 'imgs/TheRock_chin.png',
         fullImg: 'imgs/TheRock.jpg',
         answer: 'the rock',
+        answer2: 'dwayne johnson',
     },
     {
         chinImg: 'imgs/TomHolland_chin.png',
         fullImg: 'imgs/TomHolland.jpg',
-        answer: 'tom holland'
+        answer: 'tom holland',
+        answer2: 'spiderman'
     },
     {
         chinImg: 'imgs/WillSmith_chin.png',
@@ -88,8 +96,13 @@ const chins = [
     },
 ]
 
+const corrMsgArr = ["You got it!", "Way to know that chin!", "I knew you would get it!"]
+const wrongMsgArr = ["Hmm...not quite.", "So close! JK!", "Guess again!", "How's your spelling?", "Not the chin we're looking for" ]
+const defaultMsgArr = ['But do you know to whom this chin belongs?', 'Who dis?', 'NAME. THAT. CHIN!', 'Guess the chin....2 win....']
+
+
 /*----- app's state (variables) -----*/ 
-let score, rndImgIdx
+let score, rndImgIdx, corrMsgIdx, wrongMsgIdx, defaultMsgIdx
 
 
 /*----- cached element references -----*/ 
@@ -119,49 +132,52 @@ function init() {
 
 function getChinImage() {
     rndImgIdx = Math.floor(Math.random() * chins.length);
-    
-    // let rndImgIdx = Math.floor(Math.random() * chins.length);
     chinImage.setAttribute("src", `${chins[rndImgIdx].chinImg}`)
     photoContainer.appendChild(chinImage).style.border='2px solid black'
 }
+
 
 function getFullImage() {
         faceImage.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
         photoContainer.removeChild(chinImage)
         photoContainer.appendChild(faceImage)
         scoreEl.innerHTML = score;
-    
-
 }
 
 
 function submitGuess() {
     // when button is clicked, compare player's input with chins[i].answer
     let chinAnswer = chins[rndImgIdx].answer
+    let chinAnswer2 = chins[rndImgIdx].answer2
+    corrMsgIdx = Math.floor(Math.random() * corrMsgArr.length);
+    wrongMsgIdx = Math.floor(Math.random() * wrongMsgArr.length);
+    
+    
+
     inputEl = document.querySelector('input').value.toLowerCase()
     
-    if(inputEl === chinAnswer) {
+    if(inputEl === chinAnswer || chinAnswer2) {
         score ++
-        displayResult.innerHTML = 'You got it!'
+        displayResult.innerHTML = corrMsgArr[corrMsgIdx];
             displayResult.style.color = 'purple'
         document.querySelector('.userText').value=''
-        nextButton.style.color = 'green';
+        nextButton.style.color = 'black';
         getFullImage()
         updateChins()
     } else {
-        displayResult.innerHTML = 'NOPE. Guess Again and check your spelling!'
-        displayResult.style.color='red'
+        displayResult.innerHTML = wrongMsgArr[wrongMsgIdx];
+            displayResult.style.color = 'red'
     }
 }
     
 
 function nextImage() {
-    // photoContainer.remove(faceImage)
     chins.length === 0 ? displayResult.innerHTML = `Congrats! You knew ${score} chins!` : render()
     console.log('go to next image')
 
     getChinImage()
 }
+
 
 function updateChins() {
     chins.splice(rndImgIdx, 1)
@@ -169,13 +185,14 @@ function updateChins() {
 
 
 function render() {
+    defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
+
+    displayResult.innerHTML = defaultMsgArr[defaultMsgIdx];
+        displayResult.style.color="black"
     nextButton.style.color = 'white';
     console.log(photoContainer)
     photoContainer.removeChild(faceImage)
     getChinImage();
-
-    
-
     
     //if there are no more chins, alert user of final score
 }

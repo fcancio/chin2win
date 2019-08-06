@@ -34,8 +34,20 @@ Features list:
 
 Stretch goals:
     [x] Full face image shown when chin guessed correcly
+    - Various display messages based on correct or incorrect guesses
+        [x] create correct message array
+        [x] display/return random idx within correct message array
+        - reset to default message at render
+    - Clues/Hints
+        - create clue properties within chins array
+        - clue becomes accessible if answer is incorrect
+            - click event on 'clue button' will print a clue
+        - one additional clue becomes available for each additional incorrect guess
+    - Game Over result
+        - if player guesses incorrectly 6 times, game is over
+            - count number of inputs
+            - if number of inputs is => 6, prompt game over
     - Incorrect guess passes
-    - Clues
     - Trade incorrect guess pass for clues
     - Timer
     - Multiplayer/How fast?: Each player takes turns correctly typing the name of a celebrity whose chin is pictured. A player accumulates  time for every second taken to answer correctly, with a time limit of 60 seconds (1 minute) for each turn. If a player is unable to correctly guess the name of the celebrity within the time limit, 120 seconds (2 minutes) will be added to their cumulative time.
