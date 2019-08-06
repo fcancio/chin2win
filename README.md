@@ -38,11 +38,16 @@ Stretch goals:
         [x] create correct message array
         [x] display/return random idx within correct message array
         [x] reset to default message at render
-    - Clues/Hints
-        - create clue properties within chins array
-        - clue becomes accessible if answer is incorrect
-            - click event on 'clue button' will print a clue
-        - one additional clue becomes available for each additional incorrect guess
+    - All chins guessed- feature
+        - display 'Herm' image and 'Herm-approved' message
+        - confetti
+    - Chin check-in at 10 chins
+        - if score >= 10, prompt player if they would like to continue playing
+    - Hints
+        - create hint properties within chins array
+        - clickevent on 'hint button' will print a hint
+        - hint becomes accessible if answer is incorrect
+        - one additional hint becomes available for each additional incorrect guess
     - Game Over result
         - if player guesses incorrectly 6 times, game is over
             - count number of inputs

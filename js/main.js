@@ -26,13 +26,13 @@ const chins = [
         chinImg: 'imgs/BarackObama_chin.png',
         fullImg: 'imgs/BarackObama.jpg',
         answer: 'barack obama', 
-        answerTwo: 'obama',
+        answer2: 'obama',
     },
     {
         chinImg: 'imgs/Beyonce_chin.png',
         fullImg: 'imgs/Beyonce.jpg',
         answer: 'beyonce',
-        answerTwo: 'beyoncé',
+        answer2: 'beyoncé',
     },
     {
         chinImg: 'imgs/ChristianBale_chin.png',
@@ -43,13 +43,13 @@ const chins = [
         chinImg: 'imgs/DonaldTrump_chin.png',
         fullImg: 'imgs/DonaldTrump.jpg',
         answer: 'donald trump',
-        answerTwo: 'trump',
+        answer2: 'trump',
     },
     {
         chinImg: 'imgs/Jay-Z_chin.png',
         fullImg: 'imgs/Jay-Z.jpg',
         answer: 'jay z',
-        answerTwo: 'jay-z',
+        answer2: 'jay-z',
     },
     {
         chinImg: 'imgs/JenniferLawrence_chin.png',
@@ -70,7 +70,7 @@ const chins = [
         chinImg: 'imgs/RobertDowneyJr_chin.png',
         fullImg: 'imgs/RobertDowneyJr.jpg',
         answer: 'robert downey jr',
-        answerTwo: 'tony stark',
+        answer2: 'tony stark',
     },
     {
         chinImg: 'imgs/ScarletJohansson_chin.png',
@@ -81,13 +81,13 @@ const chins = [
         chinImg: 'imgs/TheRock_chin.png',
         fullImg: 'imgs/TheRock.jpg',
         answer: 'the rock',
-        answerTwo: 'dwayne johnson',
+        answer2: 'dwayne johnson',
     },
     {
         chinImg: 'imgs/TomHolland_chin.png',
         fullImg: 'imgs/TomHolland.jpg',
         answer: 'tom holland',
-        answerTwo: 'spiderman',
+        answer2: 'spiderman',
     },
     {
         chinImg: 'imgs/WillSmith_chin.png',
@@ -105,16 +105,39 @@ const chins = [
         answer: 'pikachu',
     },
     {
-        chinImg: 'imgs/homersimpson_chin.jng',
+        chinImg: 'imgs/homersimpson_chin.jpg',
         fullImg: 'imgs/homersimpson.jpg',
-        answer: 'homer simposon',
+        answer: 'homer simpson',
     },
 ]
-
-const corrMsgArr = ["You got it!", "Way to know that chin!", "I knew you would get it!", "YEAH!", "That was a good one.", "So obvi."]
-const wrongMsgArr = ["Hmm...not quite.", "So close! JK!", "Guess again!", "How's your spelling?", "Not the chin we're looking for...", "Try again.", "Don't give up now!", "So close...maybe.", "Wow. Wrong."]
-const defaultMsgArr = ['But do you know to whom this chin belongs?', 'Who dis?', 'NAME. THAT. CHIN!', 'Guess the chin....2 win!']
-
+const corrMsgArr = 
+    ["You got it!", 
+    "Way to know that chin!", 
+    "I knew you would get it!", 
+    "YEAH!", 
+    "That was a good one.", 
+    "So obvi."]
+const wrongMsgArr = 
+    ["Hmm...not quite.", 
+    "So close! JK!", 
+    "Guess again!", 
+    "How's your spelling?", 
+    "Not the chin we're looking for...", 
+    "Try again.", 
+    "Don't give up now!", 
+    "So close...maybe.", 
+    "Wow. Wrong."]
+const defaultMsgArr = 
+    ['But do you know to whom this chin belongs?', 
+    'Who dis?', 
+    'NAME. THAT. CHIN!', 
+    'Guess the chin....2 win!', 
+    'Whose chin even IS this?']
+const gameOverMsgArr = [
+    "Congrats! You know your chins!",
+    "HOW many chins!? I approve!`",
+    "Well, it's been fun! 'Til next chin..."
+]
 
 /*----- app's state (variables) -----*/ 
 let score, rndImgIdx, corrMsgIdx, wrongMsgIdx, defaultMsgIdx
@@ -129,7 +152,7 @@ let nextButton = document.querySelector('.next')
 let submitButton = document.querySelector('.submit')
 let chinImage = document.createElement("img")
 let faceImage = document.createElement("img")
-
+let herm = document.createElement("img")
 
 /*----- event listeners -----*/ 
 submitButton.addEventListener('click', submitGuess)
@@ -163,7 +186,7 @@ function getFullImage() {
 function submitGuess() {
     // when button is clicked, compare player's input with chins[i].answer
     let chinAnswer = chins[rndImgIdx].answer
-    let chinAnswerTwo = chins[rndImgIdx].answerTwo
+    let chinAnswerTwo = chins[rndImgIdx].answer2
     corrMsgIdx = Math.floor(Math.random() * corrMsgArr.length);
     wrongMsgIdx = Math.floor(Math.random() * wrongMsgArr.length);
     inputEl = document.querySelector('input').value.toLowerCase()
@@ -187,9 +210,14 @@ function submitGuess() {
     
 
 function nextImage() {
-    chins.length === 0 ? displayResult.innerHTML = `Congrats! You knew ${score} chins!` : render()
-
-    getChinImage()
+    if(chins.length === 0) {
+        displayResult.innerHTML = `Congrats! You knew ${score} chins!`
+    }
+    else if(score === 3 || score === 6 || score === 9) {
+        keepGoing();
+    } else {
+        render();
+    }
 }
 
 
@@ -199,7 +227,7 @@ function updateChins() {
 
 
 function render() {
-defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
+    defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
 
     displayResult.innerHTML = defaultMsgArr[defaultMsgIdx];
         displayResult.style.color="black"
@@ -211,3 +239,24 @@ defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
     //if there are no more chins, alert user of final score
 }
 
+function keepGoing() {
+    let keepGoing = prompt("Want to keep going? Yes/No")  
+
+    if(keepGoing.toLowerCase() == "yes") {
+        render();
+    } else if (keepGoing.toLowerCase() == "no") {
+        console.log("user doesn't want to play anymore")
+        photoContainer.removeChild(faceImage);
+        gameOver();
+    }
+}
+
+
+function gameOver() {
+    gameOverMsgIdx = Math.floor(Math.random() * gameOverMsgArr.length);
+    displayResult.innerHTML = gameOverMsgArr[gameOverMsgIdx];
+
+    herm.src = 'imgs/herm_logo_new.jpg';
+    photoContainer.append(herm)
+    console.log(herm)
+}
