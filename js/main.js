@@ -26,13 +26,13 @@ const chins = [
         chinImg: 'imgs/BarackObama_chin.png',
         fullImg: 'imgs/BarackObama.jpg',
         answer: 'barack obama', 
-        answer2: 'obama',
+        answerTwo: 'obama',
     },
     {
         chinImg: 'imgs/Beyonce_chin.png',
         fullImg: 'imgs/Beyonce.jpg',
         answer: 'beyonce',
-        answer2: 'beyoncé',
+        answerTwo: 'beyoncé',
     },
     {
         chinImg: 'imgs/ChristianBale_chin.png',
@@ -43,13 +43,13 @@ const chins = [
         chinImg: 'imgs/DonaldTrump_chin.png',
         fullImg: 'imgs/DonaldTrump.jpg',
         answer: 'donald trump',
-        answer2: 'trump',
+        answerTwo: 'trump',
     },
     {
         chinImg: 'imgs/Jay-Z_chin.png',
         fullImg: 'imgs/Jay-Z.jpg',
         answer: 'jay z',
-        answer2: 'jay-z',
+        answerTwo: 'jay-z',
     },
     {
         chinImg: 'imgs/JenniferLawrence_chin.png',
@@ -70,7 +70,7 @@ const chins = [
         chinImg: 'imgs/RobertDowneyJr_chin.png',
         fullImg: 'imgs/RobertDowneyJr.jpg',
         answer: 'robert downey jr',
-        answer2: 'tony stark',
+        answerTwo: 'tony stark',
     },
     {
         chinImg: 'imgs/ScarletJohansson_chin.png',
@@ -81,13 +81,13 @@ const chins = [
         chinImg: 'imgs/TheRock_chin.png',
         fullImg: 'imgs/TheRock.jpg',
         answer: 'the rock',
-        answer2: 'dwayne johnson',
+        answerTwo: 'dwayne johnson',
     },
     {
         chinImg: 'imgs/TomHolland_chin.png',
         fullImg: 'imgs/TomHolland.jpg',
         answer: 'tom holland',
-        answer2: 'spiderman'
+        answerTwo: 'spiderman'
     },
     {
         chinImg: 'imgs/WillSmith_chin.png',
@@ -96,9 +96,9 @@ const chins = [
     },
 ]
 
-const corrMsgArr = ["You got it!", "Way to know that chin!", "I knew you would get it!"]
-const wrongMsgArr = ["Hmm...not quite.", "So close! JK!", "Guess again!", "How's your spelling?", "Not the chin we're looking for" ]
-const defaultMsgArr = ['But do you know to whom this chin belongs?', 'Who dis?', 'NAME. THAT. CHIN!', 'Guess the chin....2 win....']
+const corrMsgArr = ["You got it!", "Way to know that chin!", "I knew you would get it!", "YEAH!", "That was a good one.", "So obvi."]
+const wrongMsgArr = ["Hmm...not quite.", "So close! JK!", "Guess again!", "How's your spelling?", "Not the chin we're looking for...", "Try again.", "Don't give up now!", "So close...maybe.", "Wow. Wrong."]
+const defaultMsgArr = ['But do you know to whom this chin belongs?', 'Who dis?', 'NAME. THAT. CHIN!', 'Guess the chin....2 win!']
 
 
 /*----- app's state (variables) -----*/ 
@@ -148,15 +148,15 @@ function getFullImage() {
 function submitGuess() {
     // when button is clicked, compare player's input with chins[i].answer
     let chinAnswer = chins[rndImgIdx].answer
-    let chinAnswer2 = chins[rndImgIdx].answer2
+    let chinAnswerTwo = chins[rndImgIdx].answerTwo
     corrMsgIdx = Math.floor(Math.random() * corrMsgArr.length);
     wrongMsgIdx = Math.floor(Math.random() * wrongMsgArr.length);
-    
-    
-
     inputEl = document.querySelector('input').value.toLowerCase()
     
-    if(inputEl === chinAnswer || chinAnswer2) {
+    if(inputEl === chinAnswer || inputEl === chinAnswerTwo) {
+        console.log(inputEl)
+        console.log(chinAnswerTwo)
+        console.log(inputEl === chinAnswerTwo)
         score ++
         displayResult.innerHTML = corrMsgArr[corrMsgIdx];
             displayResult.style.color = 'purple'
@@ -173,7 +173,6 @@ function submitGuess() {
 
 function nextImage() {
     chins.length === 0 ? displayResult.innerHTML = `Congrats! You knew ${score} chins!` : render()
-    console.log('go to next image')
 
     getChinImage()
 }
@@ -185,12 +184,12 @@ function updateChins() {
 
 
 function render() {
-    defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
+defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
 
     displayResult.innerHTML = defaultMsgArr[defaultMsgIdx];
         displayResult.style.color="black"
+        displayResult.style.fontStyle="italic"
     nextButton.style.color = 'white';
-    console.log(photoContainer)
     photoContainer.removeChild(faceImage)
     getChinImage();
     

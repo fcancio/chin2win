@@ -34,10 +34,10 @@ Features list:
 
 Stretch goals:
     [x] Full face image shown when chin guessed correcly
-    - Various display messages based on correct or incorrect guesses
+    [x] Various display messages based on correct or incorrect guesses
         [x] create correct message array
         [x] display/return random idx within correct message array
-        - reset to default message at render
+        [x] reset to default message at render
     - Clues/Hints
         - create clue properties within chins array
         - clue becomes accessible if answer is incorrect
