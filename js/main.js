@@ -188,6 +188,7 @@ resetButton.addEventListener('click', reset)
 
 
 /*----- functions -----*/
+gameInstructions();
 init();
 
 function init() {
@@ -198,6 +199,7 @@ function init() {
 
 function reset() {
     score = 0;
+    scoreEl.innerHTML = score;
     wrongInp = 0;
     getChinImage();
 }
@@ -209,7 +211,7 @@ function render() {
     displayResult.style.color="#615BFF";
     displayResult.style.fontStyle="italic";
     nextButton.style.color = 'white';
-    // resetButton.style.color = 'white';
+    resetButton.style.color = 'black';
     photoContainer.removeChild(faceImage);
     getChinImage();
 }
@@ -223,6 +225,7 @@ function getChinImage() {
 
 function getFullImage() {
     hintButton.style.color="white";
+    resetButton.style.color = 'white';
     faceImage.setAttribute("src", `${chins[rndImgIdx].fullImg}`);
     photoContainer.removeChild(chinImage);
     photoContainer.appendChild(faceImage);
@@ -327,4 +330,16 @@ function judgeJudy() {
         // imageAlt: 'null',
         animation: false
         });
+}
+
+function gameInstructions() {
+    Swal.fire({
+        title: 'Pro Chin Tips:',
+        text: "1. Spelling matters   2. Use full names when possible   3. Game over at 5 wrong guesses!",
+        imageUrl: 'imgs/herm_logo_new.jpg',
+        imageWidth: 250,
+        imageHeight: 200,
+        // imageAlt: 'null',
+        animation: false
+    });
 }
