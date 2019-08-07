@@ -4,8 +4,9 @@
   }
 
 body {
-    background-image: url(judgejudy.JPG);
-    background-repeat: repeat;
+    /* background-image: url(judgejudy.JPG);
+    background-repeat: repeat; */
+    background-color: floralwhite;
     display: flex;
     /* flex-direction: column; */
     justify-content: center;
