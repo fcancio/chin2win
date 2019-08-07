@@ -11,27 +11,27 @@ const chins = [
         chinImg: 'imgs/MichaelKeaton_chin.png',
         fullImg: 'imgs/MichaelKeaton.jpg',
         answer: 'michael keaton',
-        hint1: 'movie actor',
+        hint1: 'Movie actor-- some may say the best Batman.',
     },
     {
         chinImg: 'imgs/TinaFey_chin.png',
         fullImg: 'imgs/TinaFey.jpg',
         answer: 'tina fey',
-        hint1: 'comedic actress',
+        hint1: 'Comedic actress who wears pink on Wednesdays.',
     },
     {
         chinImg: 'imgs/ArnoldSchwarzenegger_chin.png',
         fullImg: 'imgs/ArnoldSchwarzenegger.jpg',
         answer: 'arnold schwarzenegger',
         answer2: 'arnold',
-        hint1: 'actor-turned-politician'
+        hint1: '"Who is your daddy, and what does he do?"'
     },
     {
         chinImg: 'imgs/BarackObama_chin.png',
         fullImg: 'imgs/BarackObama.jpg',
         answer: 'barack obama', 
         answer2: 'obama',
-        hint1: 'P-R-E-S...',
+        hint1: 'Former P-R-E-S...',
     },
     {
         chinImg: 'imgs/Beyonce_chin.png',
@@ -58,7 +58,7 @@ const chins = [
         fullImg: 'imgs/Jay-Z.jpg',
         answer: 'jay z',
         answer2: 'jay-z',
-        hint1: 'rapper',
+        hint1: "He's a rapper",
     },
     {
         chinImg: 'imgs/JenniferLawrence_chin.png',
@@ -96,7 +96,7 @@ const chins = [
         fullImg: 'imgs/TheRock.jpg',
         answer: 'the rock',
         answer2: 'dwayne johnson',
-        hint1: 'did not initially get famous for his roles in film',
+        hint1: 'did not initially get famous for his roles in film, and is known for his cooking',
     },
     {
         chinImg: 'imgs/TomHolland_chin.png',
@@ -127,7 +127,7 @@ const chins = [
         chinImg: 'imgs/homersimpson_chin.jpg',
         fullImg: 'imgs/homersimpson.jpg',
         answer: 'homer simpson',
-        hint1: "you don't know this one? d'oh!",
+        hint1: "you don't know this one? Make sure you type his full name, d'oh!",
     },
 ]
 const corrMsgArr = 
@@ -184,7 +184,7 @@ let resetButton = document.querySelector(".reset")
 submitButton.addEventListener('click', submitGuess)
 nextButton.addEventListener('click', nextImage)
 hintButton.addEventListener('click', giveHint)
-resetButton.addEventListener('click', init)
+resetButton.addEventListener('click', reset)
 
 
 /*----- functions -----*/
@@ -194,7 +194,12 @@ function init() {
     score = 0;
     wrongInp = 0;
     getChinImage();
-    render();
+}
+
+function reset() {
+    score = 0;
+    wrongInp = 0;
+    getChinImage();
 }
 
 function render() {
@@ -281,9 +286,9 @@ function updateChins() {
         
 function gameOver() {
     if(wrongInp === 5) {
+        photoContainer.removeChild(chinImage);
         gameOverMsgIdx = Math.floor(Math.random() * gameOverMsgArr.length);
         displayResult.innerHTML = gameOverMsgArr[gameOverMsgIdx];
-        photoContainer.removeChild(chinImage);
         photoContainer.appendChild(herm);
     }
 }
