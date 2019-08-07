@@ -1,10 +1,11 @@
- html, * {
+ html * {
     font-family: 'Bungee';
     /* box-sizing: border-box; */
   }
 
-
 body {
+    background-image: url(judgejudy.JPG);
+    background-repeat: repeat;
     display: flex;
     /* flex-direction: column; */
     justify-content: center;
@@ -13,6 +14,7 @@ body {
 }
 
 main {
+    background-color: white;
     display: grid;
     grid-template-columns: 600px;
     grid-template-rows: 65px 120px 375px 30px 50px;
@@ -34,12 +36,6 @@ h1 {
     flex-direction: row;
 } 
 
-/* .score {
-   margin: 0;
-   text-align: center;
-   justify-self: center;
-} */
-
 .counter {
     border: 2px solid black;
     border-radius: 1vmin;
@@ -51,9 +47,6 @@ h1 {
 #photo {
     margin: 10ox;
     height: 375px;
-    /* max-width: 700px; */
-    /* border: 5px solid gray; */
-    /* background-color: black; */
     justify-self: center;
 }
 
@@ -101,12 +94,3 @@ input, .submit {
     background-color: black;
     color: white;
 }
-
-
-
-/* .next:hover {
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: black;
-    font: white;
-} */
