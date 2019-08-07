@@ -169,22 +169,8 @@ resetButton.addEventListener('click', init)
 /*----- functions -----*/
 init();
 
-function judgeJudy() {
-    Swal.fire({
-        title: '5 chins! You did it!',
-        text: "The jury's in, and Judge Judy says you're suspiciously good at this game.  Keep going!",
-        imageUrl: 'imgs/judgejudy.JPG',
-        imageWidth: 200,
-        imageHeight: 200,
-        // imageAlt: 'null',
-        animation: false
-      });
-}
-
 function init() {
     score = 0;
-    // photoContainer.herm === true ? photoContainer.removed(herm) : render ()
-    judgeJudy()
     getChinImage();
     render();
 }
@@ -193,13 +179,12 @@ function render() {
     defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
     scoreEl.innerHTML = score;
     displayResult.innerHTML = defaultMsgArr[defaultMsgIdx];
-        displayResult.style.color="#615BFF";
-        displayResult.style.fontStyle="italic";
+    displayResult.style.color="#615BFF";
+    displayResult.style.fontStyle="italic";
     nextButton.style.color = 'white';
     // resetButton.style.color = 'white';
     photoContainer.removeChild(faceImage);
     getChinImage();
-    
 }
 
 function getChinImage() {
@@ -209,7 +194,6 @@ function getChinImage() {
     photoContainer.appendChild(chinImage).style.border='2px solid black';
 }
 
-
 function getFullImage() {
     faceImage.setAttribute("src", `${chins[rndImgIdx].fullImg}`);
     photoContainer.removeChild(chinImage);
@@ -217,9 +201,7 @@ function getFullImage() {
     scoreEl.innerHTML = score;
 }
 
-
 function submitGuess() {
-    // when button is clicked, compare player's input with chins[i].answer
     let chinAnswer = chins[rndImgIdx].answer;
     let chinAnswerTwo = chins[rndImgIdx].answer2;
     corrMsgIdx = Math.floor(Math.random() * corrMsgArr.length);
@@ -239,59 +221,75 @@ function submitGuess() {
         displayResult.style.color = 'red';
     }
 }
-    
 
 function nextImage() {
     if(chins.length === 0) {
         displayResult.innerHTML = `Congrats! You've guessed ALL THE CHINS WE HAVE.  Tell all your friends that you know at least ${score} chins!`;
-        photoContainer.style.backgroundColor="white";
         photoContainer.removeChild(faceImage);
         photoContainer.append(herm);
-    }
-    else if(score === 5 || score === 10 || score === 15) {
-        keepGoing();
-    } else {
+    } else if(score === 5) { 
+        cookieMonster()
         render();
+    } else if(score === 10) {
+        guyFieri()
+        render();
+    } else if(score === 15) {
+        judgeJudy()
+        render()
+    } else {
+        render()
     }
 }
 
 function updateChins() {
     chins.splice(rndImgIdx, 1);
 }
-
-
-function keepGoing() {
-    Swal.fire({
-        title: `${gameOverMsgArr[gameOverMsgIdx]}`,
-        text: `The jury's in! You got ${score} chins. Congrats!`,
-        imageUrl: 'judgejudy.JPG',
-        imageWidth: 200,
-        imageHeight: 200,
-        imageAlt: 'guyfieri.PNG',
-        animation: false
-      });
-}
-    
-    // let keepGoing = prompt("You're on a roll! Do you want to keep going? Yes/No");
-
-    // if(keepGoing.toLowerCase() == "yes") {
-    //     render();
-    // } else if (keepGoing.toLowerCase() == "no") {
-    //     console.log("user doesn't want to play anymore");
-    //     photoContainer.removeChild(faceImage);
-    //     gameOver();
-//     }
-// }
-
-
+        
 function gameOver() {
     gameOverMsgIdx = Math.floor(Math.random() * gameOverMsgArr.length);
-        displayResult.innerHTML = gameOverMsgArr[gameOverMsgIdx];
-
-    // herm.src = 'imgs/herm_logo_new.jpg';
-    // photoContainer.removeChild(faceImage)
+    displayResult.innerHTML = gameOverMsgArr[gameOverMsgIdx];
+            
+            // herm.src = 'imgs/herm_logo_new.jpg';
+            // photoContainer.removeChild(faceImage)
     photoContainer.appendChild(herm);
-    console.log(herm);
+            console.log(herm);
     photoContainer.style.backgroundColor="white";
 }
-
+        
+        
+        
+function cookieMonster() {
+    Swal.fire({
+        title: '5 chins!',
+        text: "Cookie Monster baked you a prize, but he eated it.",
+        imageUrl: 'imgs/cookieMonster.PNG',
+        imageWidth: 200,
+        imageHeight: 200,
+        // imageAlt: 'null',
+        animation: false
+    });
+}
+        
+function guyFieri() {
+    Swal.fire({
+        title: '10 chins!',
+        text: "The Mayor of Flavortown approves! On to the next burger! I mean, chin.",
+        imageUrl: 'imgs/guyFieri.PNG',
+        imageWidth: 200,
+        imageHeight: 200,
+        // imageAlt: 'null',
+        animation: false
+    });
+}
+        
+function judgeJudy() {
+    Swal.fire({
+        title: '15 chins!',
+        text: "The jury's in, and Judge Judy says you're suspiciously good at this game.  Keep going!",
+        imageUrl: 'imgs/judgejudy.JPG',
+        imageWidth: 200,
+        imageHeight: 200,
+        // imageAlt: 'null',
+        animation: false
+        });
+}
