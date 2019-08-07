@@ -171,71 +171,75 @@ init();
 
 function init() {
     score = 0;
+    // photoContainer.herm === true ? photoContainer.removed(herm) : render ()
     getChinImage();
     render();
+    Swal.fire({
+        title: 'Error!',
+        text: 'Do you want to continue',
+        type: 'error',
+        confirmButtonText: 'Cool'
+      })
 }
 
 function render() {
     defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
     scoreEl.innerHTML = score;
     displayResult.innerHTML = defaultMsgArr[defaultMsgIdx];
-        displayResult.style.color="black"
-        displayResult.style.fontStyle="italic"
+        displayResult.style.color="#615BFF";
+        displayResult.style.fontStyle="italic";
     nextButton.style.color = 'white';
     // resetButton.style.color = 'white';
-    photoContainer.removeChild(faceImage)
+    photoContainer.removeChild(faceImage);
     getChinImage();
     
 }
 
 function getChinImage() {
     rndImgIdx = Math.floor(Math.random() * chins.length);
-    chinImage.setAttribute("src", `${chins[rndImgIdx].chinImg}`)
-    chinImage.height=350
-    photoContainer.appendChild(chinImage).style.border='2px solid black'
+    chinImage.setAttribute("src", `${chins[rndImgIdx].chinImg}`);
+    chinImage.height=350;
+    photoContainer.appendChild(chinImage).style.border='2px solid black';
 }
 
 
 function getFullImage() {
-    faceImage.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
-    photoContainer.removeChild(chinImage)
-    photoContainer.appendChild(faceImage)
+    faceImage.setAttribute("src", `${chins[rndImgIdx].fullImg}`);
+    photoContainer.removeChild(chinImage);
+    photoContainer.appendChild(faceImage);
     scoreEl.innerHTML = score;
 }
 
 
 function submitGuess() {
     // when button is clicked, compare player's input with chins[i].answer
-    let chinAnswer = chins[rndImgIdx].answer
-    let chinAnswerTwo = chins[rndImgIdx].answer2
+    let chinAnswer = chins[rndImgIdx].answer;
+    let chinAnswerTwo = chins[rndImgIdx].answer2;
     corrMsgIdx = Math.floor(Math.random() * corrMsgArr.length);
     wrongMsgIdx = Math.floor(Math.random() * wrongMsgArr.length);
-    inputEl = document.querySelector('input').value.toLowerCase()
+    inputEl = document.querySelector('input').value.toLowerCase();
     
     if(inputEl === chinAnswer || inputEl === chinAnswerTwo) {
-        console.log(inputEl)
-        console.log(chinAnswerTwo)
-        console.log(inputEl === chinAnswerTwo)
-        score ++
+        score ++;
         displayResult.innerHTML = corrMsgArr[corrMsgIdx];
-            displayResult.style.color = 'purple'
-        document.querySelector('.userText').value=''
-        nextButton.style.color = 'black';
-        getFullImage()
-        updateChins()
+        displayResult.style.color = '#56B06D';
+        document.querySelector('.userText').value='';
+        nextButton.style.color = '#56B06D';
+        getFullImage();
+        updateChins();
     } else {
         displayResult.innerHTML = wrongMsgArr[wrongMsgIdx];
-            displayResult.style.color = 'red'
+        displayResult.style.color = 'red';
     }
 }
     
 
 function nextImage() {
     if(chins.length === 0) {
-        displayResult.innerHTML = `Congrats! You've guessed ALL THE CHINS WE HAVE.  Tell all your friends that you know at least ${score} chins!`
-        photoContainer.style.backgroundColor="white"
-        photoContainer.removeChild(faceImage)
-        photoContainer.append(herm)
+        displayResult.innerHTML = `Congrats! You've guessed ALL THE CHINS WE HAVE.  Tell all your friends that you know at least ${score} chins!`;
+        photoContainer.style.backgroundColor="white";
+        photoContainer.removeChild(faceImage);
+        photoContainer.append(herm);
     }
     else if(score === 5 || score === 10 || score === 15) {
         keepGoing();
@@ -245,21 +249,32 @@ function nextImage() {
 }
 
 function updateChins() {
-    chins.splice(rndImgIdx, 1)
+    chins.splice(rndImgIdx, 1);
 }
 
 
 function keepGoing() {
-    let keepGoing = prompt("You're on a roll! Do you want to keep going? Yes/No")  
-
-    if(keepGoing.toLowerCase() == "yes") {
-        render();
-    } else if (keepGoing.toLowerCase() == "no") {
-        console.log("user doesn't want to play anymore")
-        photoContainer.removeChild(faceImage);
-        gameOver();
-    }
+    Swal.fire({
+        title: `${gameOverMsgArr[gameOverMsgIdx]}`,
+        text: `The jury's in! You got ${score} chins. Congrats!`,
+        imageUrl: 'judgejudy.JPG',
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: 'guyfieri.PNG',
+        animation: false
+      });
 }
+    
+    // let keepGoing = prompt("You're on a roll! Do you want to keep going? Yes/No");
+
+    // if(keepGoing.toLowerCase() == "yes") {
+    //     render();
+    // } else if (keepGoing.toLowerCase() == "no") {
+    //     console.log("user doesn't want to play anymore");
+    //     photoContainer.removeChild(faceImage);
+    //     gameOver();
+//     }
+// }
 
 
 function gameOver() {
@@ -267,7 +282,9 @@ function gameOver() {
         displayResult.innerHTML = gameOverMsgArr[gameOverMsgIdx];
 
     // herm.src = 'imgs/herm_logo_new.jpg';
-    photoContainer.append(herm)
+    // photoContainer.removeChild(faceImage)
+    photoContainer.appendChild(herm);
+    console.log(herm);
     photoContainer.style.backgroundColor="white";
 }
 
