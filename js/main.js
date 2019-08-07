@@ -300,7 +300,7 @@ function cookieMonster() {
     Swal.fire({
         title: '5 chins!',
         text: "Cookie Monster baked you a prize, but he eated it.",
-        imageUrl: 'imgs/cookieMonster.PNG',
+        imageUrl: 'imgs/cookiemonster.PNG',
         imageWidth: 200,
         imageHeight: 200,
         // imageAlt: 'null',
@@ -312,7 +312,7 @@ function guyFieri() {
     Swal.fire({
         title: '10 chins!',
         text: "The Mayor of Flavortown approves! On to the next burger! I mean, chin.",
-        imageUrl: 'imgs/guyFieri.PNG',
+        imageUrl: 'imgs/guyfieri.PNG',
         imageWidth: 200,
         imageHeight: 200,
         // imageAlt: 'null',

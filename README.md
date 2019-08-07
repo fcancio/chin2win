@@ -66,13 +66,13 @@ Stretch goals:
     [x] Congrats message at 5, 10, 15 chins
     - Hints
         [x] create hint properties within chins array
-        - clickevent on 'hint button' will print a hint
+        [x] clickevent on 'hint button' will print a hint
         - hint becomes accessible if answer is incorrect
         - one additional hint becomes available for each additional incorrect guess
     - Game Over result
-        - if player guesses incorrectly 6 times, game is over
-            - count number of inputs
-            - if number of inputs is => 6, prompt game over
+        - if player guesses incorrectly 5 times, game is over
+            [x] count number of incorrect inputs
+            [x] if number of inputs is => 5, prompt game over
     - Incorrect guess passes
     - Trade incorrect guess pass for clues
     - Timer
