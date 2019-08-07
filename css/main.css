@@ -6,7 +6,7 @@
 body {
     /* background-image: url(judgejudy.JPG);
     background-repeat: repeat; */
-    background-color: floralwhite;
+    background-color: whitesmoke;
     display: flex;
     /* flex-direction: column; */
     justify-content: center;
@@ -70,6 +70,15 @@ section {
 
 .next {
     border: 2px solid lightgray;
+    border-radius: 2vmin;
+    background-color: lightgray;
+    font: white;
+    margin-right: 2vmin;
+    box-shadow: -2px 2px 1px black;
+}
+
+.hint {
+        border: 2px solid lightgray;
     border-radius: 2vmin;
     background-color: lightgray;
     font: white;

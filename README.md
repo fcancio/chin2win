@@ -56,19 +56,16 @@ Pseudocode:
 
 
 Stretch goals:
-
     [x] Full face image shown when chin guessed correcly
     [x] Various display messages based on correct or incorrect guesses
         [x] create correct message array
         [x] display/return random idx within correct message array
         [x] reset to default message at render
-    - All-chins-guessed/gameover feature
+    [x] All-chins-guessed/gameover feature
         [x] display 'Herm' image and 'Herm-approved' message
-        - confetti
-    - Chin check-in at 10 chins
-        - if score >= 10, prompt player if they would like to continue playing
+    [x] Congrats message at 5, 10, 15 chins
     - Hints
-        - create hint properties within chins array
+        [x] create hint properties within chins array
         - clickevent on 'hint button' will print a hint
         - hint becomes accessible if answer is incorrect
         - one additional hint becomes available for each additional incorrect guess

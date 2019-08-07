@@ -5,110 +5,129 @@ const chins = [
         chinImg: 'imgs/TomHanks_chin.png',
         fullImg: 'imgs/TomHanks.jpg',
         answer: 'tom hanks',
-        clue1: ''
+        hint1: 'BFFs with a volleyball'
     },
     {
         chinImg: 'imgs/MichaelKeaton_chin.png',
         fullImg: 'imgs/MichaelKeaton.jpg',
-        answer: 'michael keaton'
+        answer: 'michael keaton',
+        hint1: 'movie actor',
     },
     {
         chinImg: 'imgs/TinaFey_chin.png',
         fullImg: 'imgs/TinaFey.jpg',
-        answer: 'tina fey'
+        answer: 'tina fey',
+        hint1: 'comedic actress',
     },
     {
         chinImg: 'imgs/ArnoldSchwarzenegger_chin.png',
         fullImg: 'imgs/ArnoldSchwarzenegger.jpg',
         answer: 'arnold schwarzenegger',
         answer2: 'arnold',
+        hint1: 'actor-turned-politician'
     },
     {
         chinImg: 'imgs/BarackObama_chin.png',
         fullImg: 'imgs/BarackObama.jpg',
         answer: 'barack obama', 
         answer2: 'obama',
+        hint1: 'P-R-E-S...',
     },
     {
         chinImg: 'imgs/Beyonce_chin.png',
         fullImg: 'imgs/Beyonce.jpg',
         answer: 'beyonce',
         answer2: 'beyoncé',
+        hint1: 'singer who goes by her first name',
     },
     {
         chinImg: 'imgs/ChristianBale_chin.png',
         fullImg: 'imgs/ChristianBale.jpg',
         answer: 'christian bale',
+        hint1: "The bottom half of his face starred in a movie",
     },
     {
         chinImg: 'imgs/DonaldTrump_chin.png',
         fullImg: 'imgs/DonaldTrump.jpg',
         answer: 'donald trump',
         answer2: 'trump',
+        hint1: 'twitter famous',
     },
     {
         chinImg: 'imgs/Jay-Z_chin.png',
         fullImg: 'imgs/Jay-Z.jpg',
         answer: 'jay z',
         answer2: 'jay-z',
+        hint1: 'rapper',
     },
     {
         chinImg: 'imgs/JenniferLawrence_chin.png',
         fullImg: 'imgs/JenniferLawrence.jpg',
-        answer: 'jennifer lawrence'
+        answer: 'jennifer lawrence',
+        hint1: 'her big break was starring as the main character in a movie trilogy',
     },
     {
         chinImg: 'imgs/MattDamon_chin.png',
         fullImg: 'imgs/MattDamon.jpg',
-        answer: 'matt damon'
+        answer: 'matt damon',
+        hint1: 'known for his movie about a young mathematics genius',
     },
     {
         chinImg: 'imgs/Rihanna_chin.png',
         fullImg: 'imgs/Rihanna.jpg',
         answer: 'rihanna',
+        hint1: 'singer that goes by her first name',
     },
     {
         chinImg: 'imgs/RobertDowneyJr_chin.png',
         fullImg: 'imgs/RobertDowneyJr.jpg',
         answer: 'robert downey jr',
         answer2: 'tony stark',
+        hint1: 'has played the same movie character for the past 10 years',
     },
     {
         chinImg: 'imgs/ScarletJohansson_chin.png',
         fullImg: 'imgs/ScarletJohansson.jpg',
         answer: 'scarlet johansson',
+        hint1: 'has played the same move character for the past 9 years'
     },
     {
         chinImg: 'imgs/TheRock_chin.png',
         fullImg: 'imgs/TheRock.jpg',
         answer: 'the rock',
         answer2: 'dwayne johnson',
+        hint1: 'did not initially get famous for his roles in film',
     },
     {
         chinImg: 'imgs/TomHolland_chin.png',
         fullImg: 'imgs/TomHolland.jpg',
         answer: 'tom holland',
         answer2: 'spiderman',
+        hint1: 'British actor',
     },
     {
         chinImg: 'imgs/WillSmith_chin.png',
         fullImg: 'imgs/WillSmith.jpg',
         answer: 'will smith',
+        hint1: 'Known for his rapping and acting'
     },
     {
         chinImg: 'imgs/bigbird_chin.jpg',
         fullImg: 'imgs/bigbird.jpg',
         answer: 'big bird',
+        hint1: "well, he's big and yellow."
     },
     {
         chinImg: 'imgs/pikachu_chin.jpg',
         fullImg: 'imgs/pikachu.png',
         answer: 'pikachu',
+        hint1: 'a loyal companion',
     },
     {
         chinImg: 'imgs/homersimpson_chin.jpg',
         fullImg: 'imgs/homersimpson.jpg',
         answer: 'homer simpson',
+        hint1: "you don't know this one? d'oh!",
     },
 ]
 const corrMsgArr = 
@@ -137,13 +156,13 @@ const defaultMsgArr =
     'Guess the chin....2 win!', 
     'Whose chin even IS this?']
 const gameOverMsgArr = [
-    "Congrats! You know your chins!",
-    "HOW many chins!?  I approve. Thanks for playing!",
+    "It's been fun! Study up on those chins!",
+    "HOW many chins!? Thanks for playing!",
     "Well, it's been fun!  'Til next chin..."
 ]
 
 /*----- app's state (variables) -----*/ 
-let score, rndImgIdx, corrMsgIdx, wrongMsgIdx, defaultMsgIdx
+let score, rndImgIdx, corrMsgIdx, wrongMsgIdx, defaultMsgIdx, wrongInp
 
 
 /*----- cached element references -----*/ 
@@ -153,6 +172,7 @@ let inputEl = document.querySelector('.userText')
 let displayResult = document.querySelector('.result')
 let nextButton = document.querySelector('.next')
 let submitButton = document.querySelector('.submit')
+let hintButton = document.querySelector('.hint')
 let chinImage = document.createElement("img")
 let faceImage = document.createElement("img")
 let herm = document.createElement("img")
@@ -163,6 +183,7 @@ let resetButton = document.querySelector(".reset")
 /*----- event listeners -----*/ 
 submitButton.addEventListener('click', submitGuess)
 nextButton.addEventListener('click', nextImage)
+hintButton.addEventListener('click', giveHint)
 resetButton.addEventListener('click', init)
 
 
@@ -171,6 +192,7 @@ init();
 
 function init() {
     score = 0;
+    wrongInp = 0;
     getChinImage();
     render();
 }
@@ -195,6 +217,7 @@ function getChinImage() {
 }
 
 function getFullImage() {
+    hintButton.style.color="white";
     faceImage.setAttribute("src", `${chins[rndImgIdx].fullImg}`);
     photoContainer.removeChild(chinImage);
     photoContainer.appendChild(faceImage);
@@ -219,10 +242,14 @@ function submitGuess() {
     } else {
         displayResult.innerHTML = wrongMsgArr[wrongMsgIdx];
         displayResult.style.color = 'red';
+        wrongInp++;
+        console.log(wrongInp);
+        gameOver();
     }
 }
 
 function nextImage() {
+    hintButton.style.color="black";
     if(chins.length === 0) {
         displayResult.innerHTML = `Congrats! You've guessed ALL THE CHINS WE HAVE.  Tell all your friends that you know at least ${score} chins!`;
         photoContainer.removeChild(faceImage);
@@ -241,22 +268,25 @@ function nextImage() {
     }
 }
 
+function giveHint() {
+    let hint1 = chins[rndImgIdx].hint1
+    displayResult.innerHTML = hint1;
+    displayResult.style.color="blue";
+    hintButton.style.color = 'white';
+}
+
 function updateChins() {
     chins.splice(rndImgIdx, 1);
 }
         
 function gameOver() {
-    gameOverMsgIdx = Math.floor(Math.random() * gameOverMsgArr.length);
-    displayResult.innerHTML = gameOverMsgArr[gameOverMsgIdx];
-            
-            // herm.src = 'imgs/herm_logo_new.jpg';
-            // photoContainer.removeChild(faceImage)
-    photoContainer.appendChild(herm);
-            console.log(herm);
-    photoContainer.style.backgroundColor="white";
+    if(wrongInp === 5) {
+        gameOverMsgIdx = Math.floor(Math.random() * gameOverMsgArr.length);
+        displayResult.innerHTML = gameOverMsgArr[gameOverMsgIdx];
+        photoContainer.removeChild(chinImage);
+        photoContainer.appendChild(herm);
+    }
 }
-        
-        
         
 function cookieMonster() {
     Swal.fire({
@@ -285,7 +315,7 @@ function guyFieri() {
 function judgeJudy() {
     Swal.fire({
         title: '15 chins!',
-        text: "The jury's in, and Judge Judy says you're suspiciously good at this game.  Keep going!",
+        text: "The jury's in, and all evidence points to you being GUILTY! ...Of being too good at this game.  Keep going!",
         imageUrl: 'imgs/judgejudy.JPG',
         imageWidth: 200,
         imageHeight: 200,
