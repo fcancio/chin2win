@@ -1,11 +1,12 @@
-html, * {
+ html, * {
     font-family: 'Bungee';
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
   }
+
 
 body {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -13,8 +14,9 @@ body {
 
 main {
     display: grid;
-    grid-template-columns: 60vmin;
-    grid-template-rows: 10vmin 15vmin 60vmin 7vmin;
+    grid-template-columns: 600px;
+    grid-template-rows: 30px 65px 120px 375px 30px 50px;
+    border: 2px solid black;
 }
 
 main * {
@@ -24,36 +26,66 @@ main * {
     align-items: center;
 }
 
+nav {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.reset {
+    border: 2px solid lightgray;
+    border-radius: 2vmin;
+    background-color: lightgray;
+    font: white;
+    margin-left: 2vmin;
+    justify-content: flex-start;
+}
+
 h1 {
     font-family: 'Bungee Shade'; 
     flex-direction: row;
 } 
 
-.score {
+/* .score {
    margin: 0;
    text-align: center;
    justify-self: center;
-}
+} */
 
 .counter {
     border: 2px solid black;
     border-radius: 1vmin;
-    margin-left: 1vmin;
     padding: 1vmin 2vmin;
     font-size: 30px;
 }
 
 #photo {
-    margin-top: 5vmin;
-    width: 60vmin;
-    border: 5px solid gray;
-    background-color: black;
+    margin: 10ox;
+    height: 375px;
+    /* max-width: 700px; */
+    /* border: 5px solid gray; */
+    /* background-color: black; */
     justify-self: center;
 }
 
-#guess {
+section {
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: flex-start;
+    margin: 5px 0;
+}
+
+.next {
+    border: 2px solid lightgray;
+    border-radius: 2vmin;
+    background-color: lightgray;
+    font: white;
+    margin-right: 2vmin;
+}
+
+#user {
     display: flex;
     flex-direction: row;
+    margin-bottom: 1vmin;
 }
 
 input, .submit {
@@ -68,28 +100,7 @@ input, .submit {
     color: white;
 }
 
-section {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin: 5px 0;
-}
 
-.next {
-    border: 2px solid lightgray;
-    border-radius: 2vmin;
-    background-color: lightgray;
-    font: white;
-    margin: 0;
-}
-
-.reset {
-    border: 2px solid lightgray;
-    border-radius: 2vmin;
-    background-color: lightgray;
-    font: white;
-    margin: 0;
-}
 
 /* .next:hover {
     border: 2px solid black;

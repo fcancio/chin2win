@@ -191,6 +191,7 @@ function render() {
 function getChinImage() {
     rndImgIdx = Math.floor(Math.random() * chins.length);
     chinImage.setAttribute("src", `${chins[rndImgIdx].chinImg}`)
+    chinImage.height=350
     photoContainer.appendChild(chinImage).style.border='2px solid black'
 }
 
