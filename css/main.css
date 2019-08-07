@@ -13,7 +13,7 @@ body {
 
 main {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 60vmin;
     grid-template-rows: 10vmin 15vmin 60vmin 7vmin;
 }
 
@@ -31,6 +31,7 @@ h1 {
 
 .score {
    margin: 0;
+   text-align: center;
    justify-self: center;
 }
 

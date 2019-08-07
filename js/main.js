@@ -21,6 +21,7 @@ const chins = [
         chinImg: 'imgs/ArnoldSchwarzenegger_chin.png',
         fullImg: 'imgs/ArnoldSchwarzenegger.jpg',
         answer: 'arnold schwarzenegger',
+        answer2: 'arnold',
     },
     {
         chinImg: 'imgs/BarackObama_chin.png',
@@ -155,7 +156,9 @@ let submitButton = document.querySelector('.submit')
 let chinImage = document.createElement("img")
 let faceImage = document.createElement("img")
 let herm = document.createElement("img")
+    herm.src = 'imgs/herm_logo_new.jpg'
 let resetButton = document.querySelector(".reset")
+
 
 /*----- event listeners -----*/ 
 submitButton.addEventListener('click', submitGuess)
@@ -172,6 +175,18 @@ function init() {
     render();
 }
 
+function render() {
+    defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
+    scoreEl.innerHTML = score;
+    displayResult.innerHTML = defaultMsgArr[defaultMsgIdx];
+        displayResult.style.color="black"
+        displayResult.style.fontStyle="italic"
+    nextButton.style.color = 'white';
+    // resetButton.style.color = 'white';
+    photoContainer.removeChild(faceImage)
+    getChinImage();
+    
+}
 
 function getChinImage() {
     rndImgIdx = Math.floor(Math.random() * chins.length);
@@ -181,10 +196,10 @@ function getChinImage() {
 
 
 function getFullImage() {
-        faceImage.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
-        photoContainer.removeChild(chinImage)
-        photoContainer.appendChild(faceImage)
-        scoreEl.innerHTML = score;
+    faceImage.setAttribute("src", `${chins[rndImgIdx].fullImg}`)
+    photoContainer.removeChild(chinImage)
+    photoContainer.appendChild(faceImage)
+    scoreEl.innerHTML = score;
 }
 
 
@@ -215,11 +230,13 @@ function submitGuess() {
     
 
 function nextImage() {
-    //if there are no more chins, alert user of final score 
     if(chins.length === 0) {
         displayResult.innerHTML = `Congrats! You've guessed ALL THE CHINS WE HAVE.  Tell all your friends that you know at least ${score} chins!`
+        photoContainer.style.backgroundColor="white"
+        photoContainer.removeChild(faceImage)
+        photoContainer.append(herm)
     }
-    else if(score === 3 || score === 6 || score === 9) {
+    else if(score === 5 || score === 10 || score === 15) {
         keepGoing();
     } else {
         render();
@@ -231,21 +248,8 @@ function updateChins() {
 }
 
 
-function render() {
-    defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
-    scoreEl.innerHTML = score;
-    displayResult.innerHTML = defaultMsgArr[defaultMsgIdx];
-        displayResult.style.color="black"
-        displayResult.style.fontStyle="italic"
-    nextButton.style.color = 'white';
-    resetButton.style.color = 'white';
-    photoContainer.removeChild(faceImage)
-    getChinImage();
-    
-}
-
 function keepGoing() {
-    let keepGoing = prompt("Want to keep going? Yes/No")  
+    let keepGoing = prompt("You're on a roll! Do you want to keep going? Yes/No")  
 
     if(keepGoing.toLowerCase() == "yes") {
         render();
@@ -261,9 +265,8 @@ function gameOver() {
     gameOverMsgIdx = Math.floor(Math.random() * gameOverMsgArr.length);
         displayResult.innerHTML = gameOverMsgArr[gameOverMsgIdx];
 
-    herm.src = 'imgs/herm_logo_new.jpg';
-        photoContainer.append(herm)
-    
+    // herm.src = 'imgs/herm_logo_new.jpg';
+    photoContainer.append(herm)
     photoContainer.style.backgroundColor="white";
 }
 
