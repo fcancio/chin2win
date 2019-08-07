@@ -169,17 +169,24 @@ resetButton.addEventListener('click', init)
 /*----- functions -----*/
 init();
 
+function judgeJudy() {
+    Swal.fire({
+        title: '5 chins! You did it!',
+        text: "The jury's in, and Judge Judy says you're suspiciously good at this game.  Keep going!",
+        imageUrl: 'imgs/judgejudy.JPG',
+        imageWidth: 200,
+        imageHeight: 200,
+        // imageAlt: 'null',
+        animation: false
+      });
+}
+
 function init() {
     score = 0;
     // photoContainer.herm === true ? photoContainer.removed(herm) : render ()
+    judgeJudy()
     getChinImage();
     render();
-    Swal.fire({
-        title: 'Error!',
-        text: 'Do you want to continue',
-        type: 'error',
-        confirmButtonText: 'Cool'
-      })
 }
 
 function render() {
