@@ -10,6 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: "imgs/judgejudy.JPG";
 }
 
 main {
@@ -17,6 +18,8 @@ main {
     grid-template-columns: 600px;
     grid-template-rows: 30px 65px 120px 375px 30px 50px;
     border: 2px solid black;
+    border-radius: 2vmin;
+    box-shadow: -5px 5px 10px gray;
 }
 
 main * {
