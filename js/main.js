@@ -86,9 +86,9 @@ const chins = [
         hint1: 'has played the same movie character for the past 10 years',
     },
     {
-        chinImg: 'imgs/ScarletJohansson_chin.png',
-        fullImg: 'imgs/ScarletJohansson.jpg',
-        answer: 'scarlet johansson',
+        chinImg: 'imgs/ScarlettJohansson_chin.png',
+        fullImg: 'imgs/ScarlettJohansson.jpg',
+        answer: 'scarlett johansson',
         hint1: 'has played the same move character for the past 9 years'
     },
     {
@@ -156,9 +156,9 @@ const defaultMsgArr =
     'Guess the chin....2 win!', 
     'Whose chin even IS this?']
 const gameOverMsgArr = [
-    "It's been fun! Study up on those chins!",
-    "HOW many chins!? Thanks for playing!",
-    "Well, it's been fun!  'Til next chin..."
+    "Game over! Study up on those chins!",
+    "HOW many chins!? Game over, but thanks for playing!",
+    "Game over, but it's been fun!  'Til next chin..."
 ]
 
 /*----- app's state (variables) -----*/ 
@@ -198,6 +198,11 @@ function init() {
 }
 
 function reset() {
+    photoContainer.removeChild(herm);
+    defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
+    displayResult.innerHTML = defaultMsgArr[defaultMsgIdx];
+    displayResult.style.color='#615BFF';
+    nextButton.style.color="white";
     score = 0;
     scoreEl.innerHTML = score;
     wrongInp = 0;
@@ -290,9 +295,9 @@ function updateChins() {
 function gameOver() {
     if(wrongInp === 5) {
         photoContainer.removeChild(chinImage);
+        photoContainer.appendChild(herm);
         gameOverMsgIdx = Math.floor(Math.random() * gameOverMsgArr.length);
         displayResult.innerHTML = gameOverMsgArr[gameOverMsgIdx];
-        photoContainer.appendChild(herm);
     }
 }
         
@@ -303,7 +308,6 @@ function cookieMonster() {
         imageUrl: 'imgs/cookiemonster.PNG',
         imageWidth: 200,
         imageHeight: 200,
-        // imageAlt: 'null',
         animation: false
     });
 }
@@ -315,7 +319,6 @@ function guyFieri() {
         imageUrl: 'imgs/guyfieri.PNG',
         imageWidth: 200,
         imageHeight: 200,
-        // imageAlt: 'null',
         animation: false
     });
 }
@@ -327,7 +330,6 @@ function judgeJudy() {
         imageUrl: 'imgs/judgejudy.JPG',
         imageWidth: 200,
         imageHeight: 200,
-        // imageAlt: 'null',
         animation: false
         });
 }
@@ -339,7 +341,6 @@ function gameInstructions() {
         imageUrl: 'imgs/herm_logo_new.jpg',
         imageWidth: 250,
         imageHeight: 200,
-        // imageAlt: 'null',
         animation: false
     });
 }

@@ -1,14 +1,12 @@
  html * {
     font-family: 'Bungee';
-    /* box-sizing: border-box; */
-  }
+}
 
 body {
     /* background-image: url(judgejudy.JPG);
     background-repeat: repeat; */
     background-color: whitesmoke;
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     height: 100vh;

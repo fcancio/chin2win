@@ -1,34 +1,37 @@
-# chin2win
+#Chin2Win
 
-Objective:
 
-    'Chin 2 Win' is a fun game to play for anyone who would like to test their celebrity chin knowledge amongst friends. Or perhaps one would like to just prove it to oneself.  
+###Game background  
 
-    How to play:
-    Single Player/How many?: For each turn, an image of a celebrity's chin will be displayed on the screen. Player types out their best guess of the name of the celebrity whose chin is pictured.
 
-    How to win:
-    See how many chins you can guess correctly!
+###Objective  
 
-    Name rules:
-    Spelling counts
-    Casing does not matter
 
-Technology Used:
+Chin2Win is a fun game to play for anyone who would like to test their celebrity chin knowledge amongst friends. Or perhaps one would like to just prove it to oneself.  
 
-    HTML, CSS, JavaScript
+How to play:  
+Single Player/How many?: For each turn, an image of a celebrity's chin will be displayed on the screen. Player types out their best guess of the name of the celebrity whose chin is pictured.
 
-Wireframes:
+How to win:  
+See how many chins you can guess correctly!
 
-    https://wireframe.cc/RjBJC2
+Name rules:  
+Spelling counts
+Casing does not matter
 
-User stories:
+###Technology Used
+HTML, CSS, JavaScript
 
-    As a user, I want to be able to see a clear/high quality image of a chin so for guessing correctly.
-    As a user, I need an input box to type out my guess
-    As a user, need a way to submit my guess.
-    As a user, I need an alert or message to know whether or not my answer is correct.
-    As a user, I would like a way to see my score, or how many chins I've guessed correctly.
+###Wireframes
+![wireframe](wireframe.png
+
+###User stories
+
+As a user, I want to be able to see a clear/high quality image of a chin so for guessing correctly.  
+As a user, I need an input box to type out my guess  
+As a user, need a way to submit my guess.  
+As a user, I need an alert or message to know whether or not my answer is correct.  
+As a user, I would like a way to see my score, or how many chins I've guessed correctly.  
 
 Features list:
 
