@@ -17,7 +17,7 @@ Tips:
 - Most answers are full names
 
 ###Technology Used
-HTML, CSS, JavaScript, Node
+HTML, CSS, JavaScript
 
 ###Wireframe and Screenshots
 ![wireframe](wireframe.png)
@@ -82,8 +82,9 @@ As a user, I would like a way to see my score, so I know how close I am to winni
 	- [x] count number of incorrect inputs
 	- [x] if number of incorrect inputs == 5, game is over  
 6. Display number of wrong inputs made
-	- fix conditional logic for wrong inputs counted
-7. Add additional alternate names for answers
+	[x] fix conditional logic for wrong inputs counted
+7. [x] Add additional alternate names for answers
+8. Build Browser responsiveness for mobile screens
 8. Incorrect guess passes
 9. Trade incorrect guess pass for clues
 10. Timer

@@ -273,6 +273,8 @@ function nextImage() {
         guyFieri()
     } else if(score === 15) {
         judgeJudy()
+    } else if(score === 20) {
+        davidBlaine()
     } else {
         render()
     }
@@ -333,6 +335,19 @@ function judgeJudy() {
         title: '15 chins!',
         text: "The jury's in, and all evidence points to you being GUILTY! ...Of being too good at this game.  Keep going!",
         imageUrl: 'imgs/judgejudy.JPG',
+        imageWidth: 200,
+        imageHeight: 200,
+        animation: false
+        });
+        render()
+}
+
+// alerts user to david blaine milestone at 20 chins
+function davidBlaine() {
+    Swal.fire({
+        title: '20 chins!',
+        text: "Must be magic, because you got all 20 chins right! David Blaine is shook.",
+        imageUrl: 'imgs/davidblaine.PNG',
         imageWidth: 200,
         imageHeight: 200,
         animation: false
