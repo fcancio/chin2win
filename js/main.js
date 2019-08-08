@@ -5,7 +5,7 @@ const chins = [
         chinImg: 'imgs/TomHanks_chin.png',
         fullImg: 'imgs/TomHanks.jpg',
         answer: 'tom hanks',
-        hint1: 'BFFs with a volleyball'
+        hint1: 'BFFs with a volleyball',
     },
     {
         chinImg: 'imgs/MichaelKeaton_chin.png',
@@ -24,7 +24,7 @@ const chins = [
         fullImg: 'imgs/ArnoldSchwarzenegger.jpg',
         answer: 'arnold schwarzenegger',
         answer2: 'arnold',
-        hint1: '"Who is your daddy, and what does he do?"'
+        hint1: '"Who is your daddy, and what does he do?"',
     },
     {
         chinImg: 'imgs/BarackObama_chin.png',
@@ -267,14 +267,13 @@ function nextImage() {
         Tell all your friends that you know at least ${score} chins!`;
         photoContainer.removeChild(faceImage);
         photoContainer.append(herm);
+        davidBlaine();
     } else if(score === 5) { 
         cookieMonster()
     } else if(score === 10) {
         guyFieri()
     } else if(score === 15) {
         judgeJudy()
-    } else if(score === 20) {
-        davidBlaine()
     } else {
         render()
     }
