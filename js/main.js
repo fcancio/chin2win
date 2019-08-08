@@ -163,7 +163,7 @@ const gameOverMsgArr = [
 ]
 
 /*----- app's state (variables) -----*/ 
-let score, wrongInp, rndImgIdx, corrMsgIdx, wrongMsgIdx, defaultMsgIdx
+let score, wrongInp, rndImgIdx, corrMsgIdx, wrongMsgIdx, defaultMsgIdx, chinsInPlay
 
 
 /*----- cached element references -----*/ 
@@ -196,7 +196,9 @@ init();
 function init() {
     score = 0;
     wrongInp = 0;
+    chinsInPlay = chins.slice()
     getChinImage();
+
 }
 
 /* render new image, new displayMsg and button styles
@@ -215,8 +217,8 @@ function render() {
 
 //display a new random chin image from remaining chins
 function getChinImage() {
-    rndImgIdx = Math.floor(Math.random() * chins.length);
-    chinImage.setAttribute("src", `${chins[rndImgIdx].chinImg}`);
+    rndImgIdx = Math.floor(Math.random() * chinsInPlay.length);
+    chinImage.setAttribute("src", `${chinsInPlay[rndImgIdx].chinImg}`);
     chinImage.height=350;
     photoContainer.appendChild(chinImage).style.border='2px solid black';
 }
@@ -225,7 +227,7 @@ function getChinImage() {
 function getFullImage() {
     hintButton.style.color='white';
     resetButton.style.color='white';
-    faceImage.setAttribute("src", `${chins[rndImgIdx].fullImg}`);
+    faceImage.setAttribute("src", `${chinsInPlay[rndImgIdx].fullImg}`);
     photoContainer.removeChild(chinImage);
     photoContainer.appendChild(faceImage);
     scoreEl.innerHTML = score;
@@ -234,8 +236,8 @@ function getFullImage() {
 /*when user submits their guess, check if their answer is correct 
 and display appropriate messaging */
 function submitGuess() {
-    let chinAnswer = chins[rndImgIdx].answer;
-    let chinAnswerTwo = chins[rndImgIdx].answer2;
+    let chinAnswer = chinsInPlay[rndImgIdx].answer;
+    let chinAnswerTwo = chinsInPlay[rndImgIdx].answer2;
     corrMsgIdx = Math.floor(Math.random() * corrMsgArr.length);
     wrongMsgIdx = Math.floor(Math.random() * wrongMsgArr.length);
     inputEl = document.querySelector('input').value.toLowerCase();
@@ -252,9 +254,9 @@ function submitGuess() {
         wrongInp++;
         displayResult.innerHTML = wrongMsgArr[wrongMsgIdx];
         displayResult.style.color='red';
+        gameOver();
     } else {
         displayResult.innerHTML="But you didn't type anything to submit!";
-        gameOver();
     }
 }
 
@@ -262,7 +264,7 @@ function submitGuess() {
 and check if milestones have been reached before rendering next image */
 function nextImage() {
     hintButton.style.color="black";
-    if(chins.length === 0) {
+    if(chinsInPlay.length === 0) {
         displayResult.innerHTML = `Congrats! You've guessed ALL THE CHINS WE HAVE.  
         Tell all your friends that you know at least ${score} chins!`;
         photoContainer.removeChild(faceImage);
@@ -281,7 +283,7 @@ function nextImage() {
 
 // when hint button is clicked, display hint
 function giveHint() {
-    let hint1 = chins[rndImgIdx].hint1
+    let hint1 = chinsInPlay[rndImgIdx].hint1
     displayResult.innerHTML=hint1;
     displayResult.style.color='blue';
     hintButton.style.color='white';
@@ -289,7 +291,7 @@ function giveHint() {
 
 // remove last displayed chin from array
 function updateChins() {
-    chins.splice(rndImgIdx, 1);
+    chinsInPlay.splice(rndImgIdx, 1);
 }
 
 // if player makes 5 incorrect guesses, the game ends
@@ -375,6 +377,7 @@ function reset() {
     score = 0;
     scoreEl.innerHTML = score;
     wrongInp = 0;
+    chinsInPlay = chins.slice()
     getChinImage();
     photoContainer.removeChild(herm);
 }
