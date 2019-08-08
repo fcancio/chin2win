@@ -248,11 +248,12 @@ function submitGuess() {
         nextButton.style.color='#56B06D';
         getFullImage();
         updateChins();
-    } else {
+    } else if(inputEl !== '' && (inputEl !== chinAnswer || inputEl !== chinAnswerTwo)) {
+        wrongInp++;
         displayResult.innerHTML = wrongMsgArr[wrongMsgIdx];
         displayResult.style.color='red';
-        wrongInp++;
-        console.log(wrongInp);
+    } else {
+        displayResult.innerHTML="But you didn't type anything to submit!";
         gameOver();
     }
 }
