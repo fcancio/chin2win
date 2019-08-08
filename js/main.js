@@ -37,8 +37,8 @@ const chins = [
         chinImg: 'imgs/Beyonce_chin.png',
         fullImg: 'imgs/Beyonce.jpg',
         answer: 'beyonce',
-        answer2: 'beyoncé',
-        hint1: 'singer who goes by her first name',
+        answer2: 'beyonce knowles',
+        hint1: "Need hot sauce? This singer's got some in her bag. swag.",
     },
     {
         chinImg: 'imgs/ChristianBale_chin.png',
@@ -58,7 +58,7 @@ const chins = [
         fullImg: 'imgs/Jay-Z.jpg',
         answer: 'jay z',
         answer2: 'jay-z',
-        hint1: "He's a rapper",
+        hint1: "Considered one of the greatest rappers, beyond Reasonable Doubt.",
     },
     {
         chinImg: 'imgs/JenniferLawrence_chin.png',
@@ -70,64 +70,65 @@ const chins = [
         chinImg: 'imgs/MattDamon_chin.png',
         fullImg: 'imgs/MattDamon.jpg',
         answer: 'matt damon',
-        hint1: 'known for his movie about a young mathematics genius',
+        hint1: "He's wicked smaht.",
     },
     {
         chinImg: 'imgs/Rihanna_chin.png',
         fullImg: 'imgs/Rihanna.jpg',
         answer: 'rihanna',
-        hint1: 'singer that goes by her first name',
+        hint1: "Did you signal an 'SOS', which also happens to be the title of this singer's 2006 hit single?",
     },
     {
         chinImg: 'imgs/RobertDowneyJr_chin.png',
         fullImg: 'imgs/RobertDowneyJr.jpg',
-        answer: 'robert downey jr',
-        answer2: 'tony stark',
-        hint1: 'has played the same movie character for the past 10 years',
+        answer: 'robert downey jr.',
+        answer2: 'robert downey jr',
+        answer3: 'tony stark',
+        hint1: 'This actor has played the same movie character for the past 10 years',
     },
     {
         chinImg: 'imgs/ScarlettJohansson_chin.png',
         fullImg: 'imgs/ScarlettJohansson.jpg',
         answer: 'scarlett johansson',
-        hint1: 'has played the same move character for the past 9 years'
+        hint1: 'This actress has played the same move character for the past 9 years',
     },
     {
         chinImg: 'imgs/TheRock_chin.png',
         fullImg: 'imgs/TheRock.jpg',
         answer: 'the rock',
         answer2: 'dwayne johnson',
-        hint1: 'did not initially get famous for his roles in film, and is known for his cooking',
+        hint1: 'This personality was not initially famous for his roles in film, and is known for his cooking.',
     },
     {
         chinImg: 'imgs/TomHolland_chin.png',
         fullImg: 'imgs/TomHolland.jpg',
         answer: 'tom holland',
         answer2: 'spiderman',
-        hint1: 'British actor',
+        hint1: "My senses tell me you've seen this actor around the neighborhood.",
     },
     {
         chinImg: 'imgs/WillSmith_chin.png',
         fullImg: 'imgs/WillSmith.jpg',
         answer: 'will smith',
-        hint1: 'Known for his rapping and acting'
+        hint1: 'This actor was once known for having a prada bag with a lotta stuff in it.'
     },
     {
         chinImg: 'imgs/bigbird_chin.jpg',
         fullImg: 'imgs/bigbird.jpg',
         answer: 'big bird',
-        hint1: "well, he's big and yellow."
+        hint1: "Well, he's big and yellow."
     },
     {
         chinImg: 'imgs/pikachu_chin.jpg',
         fullImg: 'imgs/pikachu.png',
         answer: 'pikachu',
-        hint1: 'a loyal companion',
+        hint1: 'It would behoove you to choose this loyal companion that lights up a room.',
     },
     {
         chinImg: 'imgs/homersimpson_chin.jpg',
         fullImg: 'imgs/homersimpson.jpg',
         answer: 'homer simpson',
-        hint1: "you don't know this one? Make sure you type his full name, d'oh!",
+        hint1: "You don't know this one? Make sure you type his full name, d'oh!",
     },
 ]
 const corrMsgArr = 
@@ -162,7 +163,7 @@ const gameOverMsgArr = [
 ]
 
 /*----- app's state (variables) -----*/ 
-let score, rndImgIdx, corrMsgIdx, wrongMsgIdx, defaultMsgIdx, wrongInp
+let score, wrongInp, rndImgIdx, corrMsgIdx, wrongMsgIdx, defaultMsgIdx
 
 
 /*----- cached element references -----*/ 
@@ -191,36 +192,28 @@ resetButton.addEventListener('click', reset)
 gameInstructions();
 init();
 
+//initialize game by setting score and wrong guesses to 0, and displaying a chin
 function init() {
     score = 0;
     wrongInp = 0;
     getChinImage();
 }
 
-function reset() {
-    photoContainer.removeChild(herm);
-    defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
-    displayResult.innerHTML = defaultMsgArr[defaultMsgIdx];
-    displayResult.style.color='#615BFF';
-    nextButton.style.color="white";
-    score = 0;
-    scoreEl.innerHTML = score;
-    wrongInp = 0;
-    getChinImage();
-}
-
+/* render new image, new displayMsg and button styles
+based on each button's functionality */
 function render() {
     defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
     scoreEl.innerHTML = score;
     displayResult.innerHTML = defaultMsgArr[defaultMsgIdx];
-    displayResult.style.color="#615BFF";
-    displayResult.style.fontStyle="italic";
-    nextButton.style.color = 'white';
-    resetButton.style.color = 'black';
+    displayResult.style.color='#615BFF';
+    displayResult.style.fontStyle='italic';
+    nextButton.style.color='white';
+    resetButton.style.color='black';
     photoContainer.removeChild(faceImage);
     getChinImage();
 }
 
+//display a new random chin image from remaining chins
 function getChinImage() {
     rndImgIdx = Math.floor(Math.random() * chins.length);
     chinImage.setAttribute("src", `${chins[rndImgIdx].chinImg}`);
@@ -228,15 +221,18 @@ function getChinImage() {
     photoContainer.appendChild(chinImage).style.border='2px solid black';
 }
 
+//display the full image of the chinbearer
 function getFullImage() {
-    hintButton.style.color="white";
-    resetButton.style.color = 'white';
+    hintButton.style.color='white';
+    resetButton.style.color='white';
     faceImage.setAttribute("src", `${chins[rndImgIdx].fullImg}`);
     photoContainer.removeChild(chinImage);
     photoContainer.appendChild(faceImage);
     scoreEl.innerHTML = score;
 }
 
+/*when user submits their guess, check if their answer is correct 
+and display appropriate messaging */
 function submitGuess() {
     let chinAnswer = chins[rndImgIdx].answer;
     let chinAnswerTwo = chins[rndImgIdx].answer2;
@@ -247,51 +243,54 @@ function submitGuess() {
     if(inputEl === chinAnswer || inputEl === chinAnswerTwo) {
         score ++;
         displayResult.innerHTML = corrMsgArr[corrMsgIdx];
-        displayResult.style.color = '#56B06D';
+        displayResult.style.color='#56B06D';
         document.querySelector('.userText').value='';
-        nextButton.style.color = '#56B06D';
+        nextButton.style.color='#56B06D';
         getFullImage();
         updateChins();
     } else {
         displayResult.innerHTML = wrongMsgArr[wrongMsgIdx];
-        displayResult.style.color = 'red';
+        displayResult.style.color='red';
         wrongInp++;
         console.log(wrongInp);
         gameOver();
     }
 }
 
+/* when next button is clicked, check if user has gone through all chins,
+and check if milestones have been reached before rendering next image */
 function nextImage() {
     hintButton.style.color="black";
     if(chins.length === 0) {
-        displayResult.innerHTML = `Congrats! You've guessed ALL THE CHINS WE HAVE.  Tell all your friends that you know at least ${score} chins!`;
+        displayResult.innerHTML = `Congrats! You've guessed ALL THE CHINS WE HAVE.  
+        Tell all your friends that you know at least ${score} chins!`;
         photoContainer.removeChild(faceImage);
         photoContainer.append(herm);
     } else if(score === 5) { 
         cookieMonster()
-        render();
     } else if(score === 10) {
         guyFieri()
-        render();
     } else if(score === 15) {
         judgeJudy()
-        render()
     } else {
         render()
     }
 }
 
+// when hint button is clicked, display hint
 function giveHint() {
     let hint1 = chins[rndImgIdx].hint1
-    displayResult.innerHTML = hint1;
-    displayResult.style.color="blue";
-    hintButton.style.color = 'white';
+    displayResult.innerHTML=hint1;
+    displayResult.style.color='blue';
+    hintButton.style.color='white';
 }
 
+// remove last displayed chin from array
 function updateChins() {
     chins.splice(rndImgIdx, 1);
 }
-        
+
+// if player makes 5 incorrect guesses, the game ends
 function gameOver() {
     if(wrongInp === 5) {
         photoContainer.removeChild(chinImage);
@@ -300,7 +299,8 @@ function gameOver() {
         displayResult.innerHTML = gameOverMsgArr[gameOverMsgIdx];
     }
 }
-        
+
+// alerts user to cookie monster milestone at 5 chins
 function cookieMonster() {
     Swal.fire({
         title: '5 chins!',
@@ -310,8 +310,10 @@ function cookieMonster() {
         imageHeight: 200,
         animation: false
     });
+    render();
 }
-        
+
+// alerts user to guy fieri milestone at 10 chins
 function guyFieri() {
     Swal.fire({
         title: '10 chins!',
@@ -321,8 +323,10 @@ function guyFieri() {
         imageHeight: 200,
         animation: false
     });
+    render();
 }
-        
+
+// alerts user to judge judy milestone at 15 chins
 function judgeJudy() {
     Swal.fire({
         title: '15 chins!',
@@ -332,8 +336,10 @@ function judgeJudy() {
         imageHeight: 200,
         animation: false
         });
+        render()
 }
 
+// alerts user game instructions at load
 function gameInstructions() {
     Swal.fire({
         title: 'Pro Chin Tips:',
@@ -343,4 +349,17 @@ function gameInstructions() {
         imageHeight: 200,
         animation: false
     });
+}
+
+//reset the game and any user scores when resetButton is clicked
+function reset() {
+    defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
+    displayResult.innerHTML = defaultMsgArr[defaultMsgIdx];
+    displayResult.style.color='#615BFF';
+    nextButton.style.color='white';
+    score = 0;
+    scoreEl.innerHTML = score;
+    wrongInp = 0;
+    getChinImage();
+    photoContainer.removeChild(herm);
 }

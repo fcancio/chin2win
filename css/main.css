@@ -35,6 +35,10 @@ h1 {
     flex-direction: row;
 } 
 
+#two {
+    font-family:'Bungee',
+}
+
 .counter {
     border: 2px solid black;
     border-radius: 1vmin;
