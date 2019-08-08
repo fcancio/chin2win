@@ -90,7 +90,7 @@ const chins = [
         chinImg: 'imgs/ScarlettJohansson_chin.png',
         fullImg: 'imgs/ScarlettJohansson.jpg',
         answer: 'scarlett johansson',
-        hint1: 'This actress has played the same move character for the past 9 years',
+        hint1: "Two T's and two S's",
     },
     {
         chinImg: 'imgs/TheRock_chin.png',
@@ -217,6 +217,8 @@ function render() {
 
 //display a new random chin image from remaining chins
 function getChinImage() {
+    defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
+    displayResult.innerHTML = defaultMsgArr[defaultMsgIdx];
     rndImgIdx = Math.floor(Math.random() * chinsInPlay.length);
     chinImage.setAttribute("src", `${chinsInPlay[rndImgIdx].chinImg}`);
     chinImage.height=350;
@@ -265,19 +267,18 @@ and check if milestones have been reached before rendering next image */
 function nextImage() {
     hintButton.style.color="black";
     if(chinsInPlay.length === 0) {
-        displayResult.innerHTML = `Congrats! You've guessed ALL THE CHINS WE HAVE.  
-        Tell all your friends that you know at least ${score} chins!`;
+        displayResult.innerHTML = 'Thanks for playing!';
         photoContainer.removeChild(faceImage);
         photoContainer.append(herm);
         davidBlaine();
     } else if(score === 5) { 
-        cookieMonster()
+        cookieMonster();
     } else if(score === 10) {
-        guyFieri()
+        guyFieri();
     } else if(score === 15) {
-        judgeJudy()
+        judgeJudy();
     } else {
-        render()
+        render();
     }
 }
 
@@ -285,7 +286,8 @@ function nextImage() {
 function giveHint() {
     let hint1 = chinsInPlay[rndImgIdx].hint1
     displayResult.innerHTML=hint1;
-    displayResult.style.color='blue';
+    displayResult.style.color='#FF8C70';
+    displayResult.style.textAlign="center";
     hintButton.style.color='white';
 }
 
@@ -370,8 +372,6 @@ function gameInstructions() {
 
 //reset the game and any user scores when resetButton is clicked
 function reset() {
-    defaultMsgIdx = Math.floor(Math.random() * defaultMsgArr.length);
-    displayResult.innerHTML = defaultMsgArr[defaultMsgIdx];
     displayResult.style.color='#615BFF';
     nextButton.style.color='white';
     score = 0;
